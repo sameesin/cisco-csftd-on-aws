@@ -1,11 +1,6 @@
-## My Project
+## Cisco Secure Firewall Deployment using Terraform
 
-TODO: Fill this README out!
-
-Be sure to:
-
-* Change the title in this README
-* Edit your repository description on GitHub
+In this workshop, you will learn how to programmatically deploy Cisco Secure Firewall Threat Defence (FTD) and Firewall Management Center (FMC) using Infrastructure as Code (Terraform). You will also programmatically configure the firewalls once deployed to ensure it allows required traffic flow from internet to the test machine setup in the AWS environment.
 
 ## Security
 
