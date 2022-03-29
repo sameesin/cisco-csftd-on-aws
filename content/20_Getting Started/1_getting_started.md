@@ -4,9 +4,11 @@ chapter = false
 weight = 1
 +++
 
-## Starting AWS Cloud9 IDE
+In order for you to succeed in this workshop, you will need to run through a few steps in order to properly setup and configure your environment. These steps will include provisioning some services, installing some tools, and downloading some dependencies as well. We will begin with AWS Cloud9. Technically, you should be able to complete many of the steps in these modules if you have a properly configured terminal. However, in order to avoid the "works on my machine" response you've surely experienced at some point in your career, I strongly encourage you to proceed with launching Cloud9.
 
-AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. Cloud9 comes pre-packaged with essential tools for popular programming languages and the AWS Command Line Interface (CLI) pre-installed so you don’t need to install files or configure your laptop for this workshop. 
+{{% notice tip %}} AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. Cloud9 comes prepackaged with essential tools for popular programming languages, including JavaScript, Python, PHP, and more, so you don’t need to install files or configure your development machine to start new projects. {{% /notice %}}
+
+## Starting AWS Cloud9 IDE
 
 Your Cloud9 environment will have access to the same AWS resources as the user with which you logged into the AWS Management Console. We strongly recommend using Cloud9 to complete this workshop.
 
@@ -28,6 +30,13 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 
 5. In **Environment settings**:
 - Set the *Instance type* to **t2.micro (1 GiB RAM + 1 vCPU)**.
+- under Network Settings click on Create VPC, 
+  - select Create VPC in the new tab
+  - select the option to create VPC and subnets 
+  - provide a name ```IAC-VPC``` and CIDR ```10.0.0.0/16``` for the VPC
+  - provide a name ```mgmt``` and CIDR ```10.0.0.0/24``` for the subnet
+  - click on Create VPC
+- Back in the cloud9 settings page, select the created VPC and the created subnet 
 - Leave all other defaults unchanged.
 
 ![Step 6](/images/getting_started/c9-step6-b.png)
@@ -60,6 +69,35 @@ aws sts get-caller-identity
     "Arn": "arn:aws:iam::123456789012:user/Alice"
 }
 ```
+3. **Install Terraform on Cloud9**
+If Terraform is already installed you can skip this step. To check if Terraform is installed run the following command.
+
+```console
+terraform --version
+```
+
+- Run the following commands on the terminal to install Terraform
+
+```console
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum -y install terraform
+```
+
+- Check the Terraform version to confirm Terraform commands are working.
+
+4. **Clone the source repository for this workshop**
+
+Now we want to clone the repository that contains all the content and files you need to complete this workshop.
+
+```bash
+cd ~/environment && \
+git clone https://github.com/CiscoDevnet/secure-firewall/aws-terraform.git
+```
+
+5. **Create a Key Pair**
+
+
 ### :star: Tips
 
 :bulb: Keep an open scratch pad in Cloud9 or a text editor on your local computer for notes. When the step-by-step directions tell you to note something such as an ID or Amazon Resource Name (ARN), copy and paste that into your scratch pad.
@@ -72,7 +110,7 @@ aws sts get-caller-identity
 
 :key: Keep your [AWS Cloud9 IDE](#aws-cloud9-ide) opened in a browser tab
 
-## Next steps
+---------
+or install a linux machine and run terraform commands from there
 
-:white_check_mark: Now you have Cloud9 launched and initialized, wait for the workshop instructor to continue.
-
+will need to create a VPC for cloud9 before hand

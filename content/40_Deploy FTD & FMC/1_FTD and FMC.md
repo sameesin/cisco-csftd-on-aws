@@ -7,12 +7,11 @@ weight = 1
 # **Introduction** 
 
 ## <ins>**FMC**</ins>
-The code below is for creating one FMC in any one of the AZ which have the FTD instance. 
+The code below is for creating one FMC in any one of the AZ which will host the FTD instance. 
 
 The data source to collect the ami of the FMC is: 
 ```
 data "aws_ami" "fmcv" {
-  #most_recent = true      // you can enable this if you want to deploy more
   owners      = ["aws-marketplace"]
  filter {
     name   = "name"
@@ -31,11 +30,11 @@ data "aws_ami" "fmcv" {
 <ins>**Creation of FMC**</ins>
 ```
 resource "aws_instance" "fmcv" {
-    ami                 = data.aws_ami.fmcv.id
-    instance_type       = "c5.4xlarge" 
-    key_name            = ""
+  ami                 = data.aws_ami.fmcv.id
+  instance_type       = c5.4xlarge
+  key_name            = var.keyname
     
-network_interface {
+  network_interface {
     network_interface_id = aws_network_interface.fmcmgmt.id
     device_index         = 0
   }
@@ -49,13 +48,13 @@ We pass the user data and the network interface specific to FMC.
  
 ## <ins>**FTD</ins>**
 
-The code below is deploying two FTD instances, each in a different availability zone with different network instances like *outside*, *inside*, *diagnostic* and *management* attached to it.
+The code below is deploying two FTD instances, each in a different availability zone with different network interfaces like *outside*, *inside*, *diagnostic* and *management* attached to it.
 The data sources file to enable this particular configuration is as follows:
 ```
 data "aws_ami" "ftdv" {
   most_recent = true
   owners      = ["aws-marketplace"]
- filter {
+  filter {
     name   = "name"
     values = ["ftdv-7.1.0"]
   }
@@ -75,8 +74,9 @@ data "template_file" "ftd_startup_file" {
     count     = 2
     template  = file("${path.module}/ftd_startup_file.txt")
     vars = {
-        fmc_ip       = var.fmc_mgmt_ip
-        fmc_nat_id   = var.fmc_nat_id
+      fmc_ip       = var.fmc_mgmt_ip
+      fmc_nat_id   = var.fmc_nat_id
+      reg_key      = var.reg_key
     }
 }
 data "aws_availability_zones" "available" {}
@@ -89,8 +89,8 @@ Template file is used to fetch the *"user data"* that is needed at the time of F
 resource "aws_instance" "ftdv" {
   count               = 2
   ami                 = data.aws_ami.ftdv.id
-  instance_type       = "c5.4xlarge"
-  key_name            = ""
+  instance_type       = var.ftd_size
+  key_name            = var.keyname
 
   network_interface {
     network_interface_id = element(var.ftd_mgmt_interface,count.index)
@@ -118,6 +118,4 @@ resource "aws_instance" "ftdv" {
   ![ftd_creation](../IMAGES/instances.jpeg)  
 
 To attach various network interfaces we simply pass that network interface's ID, with a device index. User data is also provided here.
->Note: Device index of each NIC must be different. 
-
-Create a SSH *"key_pair"* as suitable and pass the name of the respective key here. Terraform manages key pair with [aws_key_pair](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/key_pair) resource block.
+>Note: Device index of each NIC must be different.

@@ -1,37 +1,42 @@
++++
+title = "Firewall Configuration"
+chapter = false
+weight = 1
++++
+
 # **Configuring the Firewall**
 
-Firewall Management Center (FMC) needs to be configured to make sure that your firewall performs as expected.
+The firewalls need to be configured with the required configurations to make sure that your firewall performs as expected.
 
-In the FMC we will be creating/adding:  
+In this lab we will make use of ```Cisco FMC REST API``` and ```python``` to programmatically configure the following components:  
 
 1. Access control policy - **```1```**.
 2. Security zones - **```2```**. (inside & outside)
 3. Network & Host objects like LB & Gateway - **```1```** each.
-4. NAT rules.
-5. Adding FTD as a device- **```1```**. 
-6. Creating routes. 
-7. Association of ACP and NAT with our FTD
+4. NAT policy and rules.
+5. Onboard the 2 FTD to FMC
+6. Interfaces  
+7. Routes 
+8. Association NAT with FTD
 
->Note:For the purpose of demonstration the code below is written to add only one FTD and its subsequent entities. The same method can be used to support multiple FTDs 
-
-There are two ways to set up an FMC:
-
+>Note: There are two ways to set up an FMC:
 * Using FMC UI
-* Using python script with [fmcpi](https://github.com/marksull/fmcapi)
+* Using python script utilizing the **fmcpi** python module
 
 We are using python script.
 
 Code is as follows: 
- ### <ins>**Step 0:  Importing the packages & tapping in FMC** </ins>
+ ### <ins>**Step 0:  Install required module** </ins>
 
-```python
-import fmcapi
-import logging
-from pathlib import Path
-import argparse
-import time
+Install fmcapi module with command ```pip3 install fmcapi```
+
+ ### <ins>**Step 1:  Obtain ELB Private IP Addresses using AWS CLI** </ins>
+
+ ```
+  aws elbv2 describe-load-balancers --names test
+
+  aws ec2 describe-network-interfaces --filters Name=description,Values="ELB net/test/a443050c9d6b0128" --query 'NetworkInterfaces[*].PrivateIpAddresses[*].PrivateIpAddress'
 ```
-Install fmcapi with command ```pip3 install fmcapi```
 
 ```python
 def main():

@@ -7,30 +7,42 @@ weight = 2
 # **STEPS**
 Aim is to deploy all the resources created on AWS through terraform. 
 
-Open a *terminal* in folder which contains the .tf file of the network configuration.
+Open the Cloud9 terminal and navigate to the folder named **Deployment**
+Ensure the following files are present in the folder.
+- networks.tf
+- providers.tf
+- variables.tf
+- terraform.tfvars
+Ensure the followin folder is present in the folder
+- modules
+
+1. **<ins>Enter values for Terraform variables</ins>**
+   - provide the 'aws_access_key' and 'aws_secret_key' of your user.
+   - provide the name of the key created in previous section
+   - Rest of the variables have been provided with a value already, however if you wish you can modify those values
 
 And then run the following sets of command.
-1. **<ins>terraform init</ins>**
-   
-   -- cd into the folder 
+2. **<ins>terraform init</ins>**
 
    --Run ***terraform init***. This will download & install all the necessary packages needed, like the aws package. 
 
    ![init_nw](../IMAGES/INIT_NW.png)
-2. **<ins>terraform validate</ins>**
+
+3. **<ins>terraform validate</ins>**
 
     --Run *terraform validate* to check for any syntax error in the code.
 
     ![validate_nw](../IMAGES/VALIDATE_NW.png)
-3. **<ins>terraform plan</ins>**
 
-    --To understand what the code will reflect and do on your AWS account run *terraform plan*, The resources shown with the '+' symbol are set to be created. It will show the number(may be different for your topology) of resources to be added.
+4. **<ins>terraform plan</ins>**
+
+    --To understand what the code will reflect and do on your AWS account run *terraform plan --out awslab*, The resources shown with the '+' symbol are set to be created. It will show the number(may be different for your topology) of resources to be added.
 
     ![plan_nw](../IMAGES/PLAN_NW.png)
 
-4. **<ins>terrafrom apply</ins>**
+5. **<ins>terrafrom apply</ins>**
 
-    --If you are satisfied with the plan of the configuration, run *terraform apply* to apply it.
+    --If you are satisfied with the plan of the configuration, run *terraform apply awslab* to apply it.
 
     ![apply_nw](../IMAGES/APPLY_NW.png)
 

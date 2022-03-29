@@ -5,32 +5,32 @@ weight = 2
 +++
 
 # STEPS
-Aim is to deploy all the instances on AWS through terraform. 
+Aim is to deploy Cisco FTDv and FMCv instances on AWS through terraform. 
 
-Open a *terminal* in folder which contains the .tf file of the firewall configuration.
+Navigate to the Cloud9 terminal and copy **instances.tf** file from the Deployment_resources folder to the Deployment folder.
 
->Note: We have ```2``` FTD, ```1``` FMC & ```2``` Application server deployed here
+```
+  cp ./Deployment_resources/instances.tf ./Deployment/instances.tf
+  cd ./Deployment
+``` 
 
-And then run the following sets of command.
-1. **<ins>terraform init**</ins>
-   
-   -- cd into the folder 
-  
-   --Run *terraform init*. This will download & install all the necessary packages needed, like the aws package. 
+>Note: We will deploy ```2``` FTD and ```1``` FMC instances
 
-   ![init_fw](../IMAGES/INIT_FW.png)
-2. **<ins>terraform validate**</ins>
+And then run the following set of commands.
+
+1. **<ins>terraform validate**</ins>
 
     --Run *terraform validate* to check for any syntax error in the code.
 
     ![validate_fw](../IMAGES/VALIDATE_FW.png)
-3. **<ins>terraform plan**</ins>
 
-    --To understand what the code will reflect and do on your AWS account run *terraform plan*, The resources shown with the '+' symbol are set to be created. It will show the number of resources to be added.
+2. **<ins>terraform plan**</ins>
+
+    --To understand what the code will reflect and do on your AWS account run *terraform plan --out awslab*, The resources shown with the '+' symbol are set to be created. It will show the additional number of resources to be added by Terraform.
 
     ![plan_fw](../IMAGES/PLAN_FW.png)
 
-4. **<ins>terrafrom apply**</ins>
+3. **<ins>terrafrom apply**</ins>
 
     --If you are satisfied with the plan of the configuration, run *terraform apply* to apply it.
 
@@ -50,10 +50,6 @@ Open your AWS Management Console to see if all the resources are correctly deplo
 
 -- FTD can also be expanded in the similar fashion
 ![ftd](../IMAGES/ftd0_exp.jpeg)
-
-5. **<ins>terrafrom destroy</ins>**
-
-     --Run *terraform destroy* to terminate and delete all the components created.
 
 
 
