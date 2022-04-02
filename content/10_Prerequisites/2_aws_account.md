@@ -17,7 +17,7 @@ If you already have an AWS account, and have IAM Administrator access, go to
 [Provision Cloud9]({{< ref "#provision-cloud9" >}})
 {{% /notice %}}
 
-## Create an account 
+## <ins>**Create an account**</ins>
 
 1. If you don't already have an AWS account with Administrator access: [create
 one now](http://docs.aws.amazon.com/connect/latest/adminguide/gettingstarted.html#sign-up-for-aws)
@@ -27,13 +27,13 @@ as an **IAM user** with administrator access to the AWS account:
 [Create a new IAM user to use for the workshop](https://console.aws.amazon.com/iam/home?region=us-east-1#/users$new)
 
 3. Enter the user details:
-![Create User](/images/getting_started/iam-1-create-user.png)
+![Create User](/static/images/getting_started/iam-1-create-user.png)
 
 4. Attach the AdministratorAccess IAM Policy:
-![Attach Policy](/images/getting_started/iam-2-attach-policy.png)
+![Attach Policy](/static/images/getting_started/iam-2-attach-policy.png)
 
 5. Click to create the new user:
-![Confirm User](/images/getting_started/iam-3-create-user.png)
+![Confirm User](/static/images/getting_started/iam-3-create-user.png)
 
 6. Take note of the login URL and save:
-![Login URL](/images/getting_started/iam-4-save-url.png)
+![Login URL](/static/images/getting_started/iam-4-save-url.png)

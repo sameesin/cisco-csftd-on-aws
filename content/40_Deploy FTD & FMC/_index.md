@@ -4,6 +4,6 @@ chapter = true
 weight = 40
 +++
 
-# Setup AWS Network Resources
+# Deploy FTD and FMC Instances
 
 {{% children showhidden="false" %}}

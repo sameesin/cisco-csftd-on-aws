@@ -8,7 +8,7 @@ In order for you to succeed in this workshop, you will need to run through a few
 
 {{% notice tip %}} AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. Cloud9 comes prepackaged with essential tools for popular programming languages, including JavaScript, Python, PHP, and more, so you don’t need to install files or configure your development machine to start new projects. {{% /notice %}}
 
-## Starting AWS Cloud9 IDE
+## **<ins>Starting AWS Cloud9 IDE</ins>**
 
 Your Cloud9 environment will have access to the same AWS resources as the user with which you logged into the AWS Management Console. We strongly recommend using Cloud9 to complete this workshop.
 
@@ -22,7 +22,7 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 
 2. Select **Create environment**.
 
-3. Enter `wildrydes-webapp-development` into **Name** and optionally provide a **Description**.
+3. Enter `Cisco-IAC-Cloud9` into **Name** and optionally provide a **Description**.
 
 ![Step 5](/images/getting_started/c9-step5.png)
 
@@ -45,7 +45,7 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 
 7. Review the environment settings and select **Create environment**. It will take a couple of minutes for your Cloud9 environment to be provisioned and prepared.
 
-## Setting up Cloud9 IDE
+## <ins>**Setting up Cloud9 IDE**</ins>
 
 1. Once ready, your IDE will open to a welcome screen. Below that, you should see a terminal prompt. Close the Welcome tab and drag up the terminal window to give yourself more space to work in. 
 
@@ -109,8 +109,3 @@ git clone https://github.com/CiscoDevnet/secure-firewall/aws-terraform.git
 :key: Use the same region for the entirety of this workshop.
 
 :key: Keep your [AWS Cloud9 IDE](#aws-cloud9-ide) opened in a browser tab
-
----------
-or install a linux machine and run terraform commands from there
-
-will need to create a VPC for cloud9 before hand

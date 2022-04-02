@@ -1,30 +1,31 @@
 +++
-title = "Deployment of Load balancers"
+title = "Network Load balancer"
 chapter = false
 weight = 1
 +++
 
-# **Deployment of Load Balancers**
+### Introduction
 Load balancer is a key component of the network. It distributes all the incoming traffic across any set of components like EC2 instance, DB, etc. 
 
 In this lab we will create ***one external network load balancer*** forwarding traffic to the Cisco FTD outside interface.
 
-```aws_lb``` can be used to create the load balancer.  
+***aws_lb*** terraform resource will be used to create the load balancer.  
+
 ```
 resource "aws_lb" "external-lb" {
-  name                      = "External-LB"
-  load_balancer_type        = "network"
+  name                             = "External-LB"
+  load_balancer_type               = "network"
   enable_cross_zone_load_balancing = "true"
-  subnets                   = var.outside_subnet_id
+  subnets                          = var.outside_subnet_id
 }
 ```
 
-1. Notice that the external load balancer points towards outside subnet.
+1. Notice that the external load balancer points towards the outside subnet.
 2. Enabling cross zone load balancing is crucial to make sure that requests are evenly split between all the availability zones used. 
    
-  ![load_balancers](../IMAGES/load_balancers.jpeg) 
+  ![load_balancers](/images/deploy_loadbalancers/lb.jpeg) 
 
-The variables created to set port and protocol on which the load balancer will listen to and use for checking health status of tartget instances 
+Following are the variables created to set port and protocol on which the load balancer will listen to and use for checking health status of tartget instances 
 ```
 variable "external_listener_ports" {
   default = [{
@@ -42,7 +43,7 @@ variable "external_health_check" {
 }
 ```
 
-The load balancer will require some targets to route requests to, to create a target group we use ```aws_lb_target_group```.
+The load balancer will require some targets to route requests to, to create a target group we use the ***aws_lb_target_group*** terraform resource.
 
 ```
 resource "aws_lb_target_group" "external_front_end" {
@@ -60,11 +61,12 @@ resource "aws_lb_target_group" "external_front_end" {
   }
 }
 ```    
-  ![target_groups](../IMAGES/target_groups.jpeg) 
+  ![target_groups](/images/deploy_loadbalancers/target_groups.jpeg) 
   
-We can change the attributes of ```heath_check ```attachment as per needed.
+ **Note** : We can change the attributes of ```heath_check ```attachment as per specific needs.
 
-Attaching targets to the target group: 
+Attaching targets to the target group:
+
 ```
 resource "aws_lb_target_group_attachment" "target1" {
   count            = length(var.ftd_outside_ip)
@@ -74,7 +76,7 @@ resource "aws_lb_target_group_attachment" "target1" {
 }
 ```
 
-To configure the port and protocol the load balancer should listen on, we use ```aws_lb_listener```
+To configure the port and protocol the load balancer should listen on, we use ***aws_lb_listener*** terraform resource
 
 ```
 resource "aws_lb_listener" "external_listener" {
@@ -89,4 +91,4 @@ resource "aws_lb_listener" "external_listener" {
 }
 ```
 1. We add the ARN of load balancer and the ports and protocols desired. 
-2. Target group is also attached as the part of ```default_action```.
+2. Target group is also attached as the part of ***default_action***.

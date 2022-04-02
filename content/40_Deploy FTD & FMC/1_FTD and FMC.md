@@ -4,12 +4,12 @@ chapter = false
 weight = 1
 +++
 
-# **Introduction** 
+## **Introduction**
 
-## <ins>**FMC**</ins>
+### <ins>**FMC**</ins>
 The code below is for creating one FMC in any one of the AZ which will host the FTD instance. 
 
-The data source to collect the ami of the FMC is: 
+The data source to collect the ami of the FMC & to render startup_file is: 
 ```
 data "aws_ami" "fmcv" {
   owners      = ["aws-marketplace"]
@@ -26,6 +26,9 @@ data "aws_ami" "fmcv" {
     values = ["hvm"]
   }
 }
+data "template_file" "fmc_startup_file" {
+  template = file("${path.module}/fmc_startup_file.txt")
+}
 ```
 <ins>**Creation of FMC**</ins>
 ```
@@ -35,7 +38,7 @@ resource "aws_instance" "fmcv" {
   key_name            = var.keyname
     
   network_interface {
-    network_interface_id = aws_network_interface.fmcmgmt.id
+    network_interface_id = var.fmcmgmt_interface
     device_index         = 0
   }
   user_data = data.template_file.fmc_startup_file.rendered
@@ -44,7 +47,14 @@ resource "aws_instance" "fmcv" {
   }
 }
 ```
-We pass the user data and the network interface specific to FMC. 
+We pass the user data and the network interface specific to FMC. The fmc_startup_file is like this:
+```
+#FMC
+{
+"AdminPassword": "Password@123!",
+"Hostname":      "FMC-01",
+}
+``` 
  
 ## <ins>**FTD</ins>**
 
@@ -115,7 +125,17 @@ resource "aws_instance" "ftdv" {
   }
 }
 ```  
-  ![ftd_creation](../IMAGES/instances.jpeg)  
-
 To attach various network interfaces we simply pass that network interface's ID, with a device index. User data is also provided here.
+```
+  #Sensor
+  {
+      "AdminPassword": "Cisco123",
+      "Hostname":       "FTD-01",
+      "ManageLocally":  "No",
+      "FmcIp":          "${fmc_mgmt_ip}",
+      "FmcRegKey":      "${reg_key}",
+      "FmcNatId":       "${fmc_nat_id}",
+}
+```
 >Note: Device index of each NIC must be different.
+

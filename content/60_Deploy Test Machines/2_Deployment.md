@@ -1,16 +1,16 @@
 +++
-title = "Load Balancer - Deployment"
+title = "Test Machines - Deployment"
 chapter = false
 weight = 2
 +++
 
 ### STEPS
-Aim is to deploy the Load balancer on AWS through terraform. 
+Aim is to deploy the Test Machines on AWS through terraform. 
 
-Navigate to the Cloud9 terminal and copy **loadbalancers.tf** file from the Deployment_resources folder to the Deployment folder.
+Navigate to the Cloud9 terminal and copy **application.tf** file from the Deployment_resources folder to the Deployment folder.
 
 ```
-  cp ./Deployment_resources/loadbalancers.tf ./Deployment/loadbalancers.tf
+  cp ./Deployment_resources/application.tf ./Deployment/application.tf
   cd ./Deployment
 ``` 
 
@@ -36,20 +36,16 @@ And then run the following set of commands.
 
 4. **<ins>terrafrom apply**</ins>
 
---If you are satisfied with the plan of the configuration, run *terraform apply* to apply it.
+--If you are satisfied with the plan of the configuration, run ```terraform apply``` to apply it.
 
-Open your AWS Management Console to see if all the resources are correctly deployed. 
+After the deployment go to the AWS Console and check the instance is AWS Console for your application machine(EC2-ubuntu here) and bastion server.
 
-**Load Balancer:** 
-![lb](/images/deploy_loadbalancers/lb.jpeg)
+![application_server](/images/deploy_test_machines/instances.jpeg)
 
-You can click on any one to see detailed info like this:
-![ext_lb](/images/deploy_loadbalancers/ext_lb.jpeg)  
-<br>    
+You can further expand the machine to see details specefic to it.
 
-![int_lb](/images/deploy_loadbalancers/int_lb.jpeg)  
-
-**Target Groups:**  
-
-![target_group](/images/deploy_loadbalancers/int_lb.jpeg)
-
+Application server:
+![web](/images/deploy_test_machines/ec2_detail.jpeg)   
+  
+Bastion
+![bastion](/images/deploy_test_machines/bastion_instance.jpeg)  

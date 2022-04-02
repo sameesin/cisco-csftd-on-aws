@@ -13,7 +13,7 @@ In order to prevent charges to your account we recommend cleaning up the infrast
     
     --Run *terraform destroy* to terminate and delete all the components created.
 
-![delete](../IMAGES/DESTROY_NW.png)
+![delete](/static/Images/clean_up/destroy.jpeg)
 
 
 

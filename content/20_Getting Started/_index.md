@@ -1,9 +1,9 @@
 +++
-title = "Creating Environment"
+title = "Getting Started"
 chapter = true
 weight = 20
 +++
 
-# Creating Environment
+# Getting Started
 
 {{% children showhidden="false" %}}

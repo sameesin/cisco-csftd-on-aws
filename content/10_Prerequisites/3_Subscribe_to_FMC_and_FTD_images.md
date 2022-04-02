@@ -1,5 +1,5 @@
 +++
-title = "Subscribe to Cisco FTD and FMC BYOL AMIs"
+title = "Subscribe to Cisco FTD and FMC PAYG AMIs"
 chapter = false
 weight = 3
 +++

@@ -4,7 +4,7 @@ chapter = false
 weight = 2
 +++
 
-# STEPS
+### STEPS
 Aim is to deploy Cisco FTDv and FMCv instances on AWS through terraform. 
 
 Navigate to the Cloud9 terminal and copy **instances.tf** file from the Deployment_resources folder to the Deployment folder.
@@ -18,38 +18,44 @@ Navigate to the Cloud9 terminal and copy **instances.tf** file from the Deployme
 
 And then run the following set of commands.
 
-1. **<ins>terraform validate**</ins>
+1. **<ins>terraform init</ins>**
 
-    --Run *terraform validate* to check for any syntax error in the code.
+   --Run ```terraform init``` This will download & install all the necessary modules. 
 
-    ![validate_fw](../IMAGES/VALIDATE_FW.png)
+![init_fw](/images/deploy_ftd_fmc/INIT_FW.png)
 
-2. **<ins>terraform plan**</ins>
+2. **<ins>terraform validate**</ins>
 
-    --To understand what the code will reflect and do on your AWS account run *terraform plan --out awslab*, The resources shown with the '+' symbol are set to be created. It will show the additional number of resources to be added by Terraform.
+    --Run ```terraform validate``` to check for any syntax error in the code.
 
-    ![plan_fw](../IMAGES/PLAN_FW.png)
+![validate_fw](/images/deploy_ftd_fmc/VALIDATE_FW.png)
 
-3. **<ins>terrafrom apply**</ins>
+3. **<ins>terraform plan**</ins>
 
-    --If you are satisfied with the plan of the configuration, run *terraform apply* to apply it.
+    --To understand what the code will reflect and do on your AWS account run ```terraform plan --out awslab```, The resources shown with the '+' symbol are set to be created. It will show the additional number of resources to be added by Terraform.
+
+![plan_fw](/images/deploy_ftd_fmc/PLAN_FW.png)
+
+4. **<ins>terrafrom apply**</ins>
+
+    --If you are satisfied with the plan of the configuration, run ```terraform apply``` to apply it.
 
 Open your AWS Management Console to see if all the resources are correctly deployed. 
 
 **EC2:**
 
 --FMC and both the FTD are highlighted. 
-![instances](../IMAGES/INSTANCE_FTD_FMC.png)
+![instances](/images/deploy_ftd_fmc/INSTANCE_FTD_FMC.png)
 
 **FMC:** 
 
 --Open the FMC instance to see the public IP and other details of FMC.
-![fmc](../IMAGES/FMC_INS.png)
+![fmc](/images/deploy_ftd_fmc/fmc_deatail.jpeg)
 
 **FTD:**
 
 -- FTD can also be expanded in the similar fashion
-![ftd](../IMAGES/ftd0_exp.jpeg)
+![ftd](/images/deploy_ftd_fmc/ftd_detail.jpeg)
 
 
 
