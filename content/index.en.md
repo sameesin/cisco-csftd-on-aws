@@ -1,5 +1,5 @@
 ---
-title: "AWS Workshop Template"
+title: "Cisco Secure Firewall on AWS"
 weight: 0
 ---
 
