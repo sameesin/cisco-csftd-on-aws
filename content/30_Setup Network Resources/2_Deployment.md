@@ -1,8 +1,8 @@
-+++
-title = "Network resources - Deployment"
-chapter = false
-weight = 2
-+++
+---
+title: "Network resources - Deployment"
+chapter: false
+weight: 2
+---
 
 ### <ins>**STEPS**</ins>
 Aim is to deploy all the resources created on AWS through terraform. 
@@ -34,32 +34,32 @@ And then run the following sets of command.
    This will download & install all the necessary packages needed, like the aws package. 
 <br>  
 <br>
-   ![init_nw](/images/setup_network_resources/terraform_init.jpeg)
+   ![init_nw](//static/images/setup_network_resources/terraform_init.jpeg)
 <br> 
 
 3. **<ins>terraform validate</ins>**
 
     --Run ```terraform validate``` to check for any syntax error in the code.
 
-    ![validate_nw](/images/setup_network_resources/terraform_validate.jpeg)  
+    ![validate_nw](//static/images/setup_network_resources/terraform_validate.jpeg)  
   <br>  
 
 4. **<ins>terraform plan</ins>**
 
     --To understand what the code will reflect and do on your AWS account run ```terraform plan --out awslab```, The resources shown with the '+' symbol are set to be created. It will show the number(may be different for your topology) of resources to be added.
 
-    ![plan_nw](/images/setup_network_resources/plan_complete.jpeg)
+    ![plan_nw](//static/images/setup_network_resources/plan_complete.jpeg)
 
 5. **<ins>terrafrom apply</ins>**
 
     --If you are satisfied with the plan of the configuration, run ```terraform apply awslab``` to apply it.
 
-    ![apply_nw](/images/setup_network_resources/apply_complete.jpeg)
+    ![apply_nw](//static/images/setup_network_resources/apply_complete.jpeg)
 
 Open your AWS Management Console to see if all the resources are correctly deployed. 
 
 **VPC:** 
-![vpc](/images/setup_network_resources/vpc.jpeg)
+![vpc](//static/images/setup_network_resources/vpc.jpeg)
 <br> 
 
 **Subnets:** 
@@ -67,17 +67,17 @@ Search for your VPC in subnets and see all of them.
 <br>
  
 
-![subnets](/images/setup_network_resources/subnets.jpeg)
+![subnets](//static/images/setup_network_resources/subnets.jpeg)
 
 **Interface:** 
-![interfaces](/images/setup_network_resources/network_interfaces.jpeg)
+![interfaces](//static/images/setup_network_resources/network_interfaces.jpeg)
 
 **Internet_Gateway:**
- ![internet_gateway](/images/setup_network_resources/igw.jpeg)
+ ![internet_gateway](//static/images/setup_network_resources/igw.jpeg)
  
 **Security Group:**
-![SG](/Images/setup_network_resources/security_groups.jpeg)
+![SG](//static/images/setup_network_resources/security_groups.jpeg)
 
 **Route Tables:** 
-![routes_tables](/images/setup_network_resources/routetables.jpeg)
+![routes_tables](//static/images/setup_network_resources/routetables.jpeg)
 

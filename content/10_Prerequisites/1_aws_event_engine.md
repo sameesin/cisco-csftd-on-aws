@@ -1,8 +1,8 @@
-+++
-title = "AWS Event Engine"
-chapter = false
-weight = 1
-+++
+---
+title: "AWS Event Engine"
+chapter: false
+weight: 1
+---
 
 
 ## Logging into AWS Event Engine

@@ -1,8 +1,8 @@
-+++
-title = "Test Machines Setup"
-chapter = false
-weight = 1
-+++
+---
+title: "Test Machines Setup"
+chapter: false
+weight: 1
+---
 
 ## Introduction
 

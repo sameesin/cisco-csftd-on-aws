@@ -1,8 +1,8 @@
-+++
-title = "Creating your environment"
-chapter = false
-weight = 1
-+++
+---
+title: "Creating your environment"
+chapter: false
+weight: 1
+---
 
 In order for you to succeed in this workshop, you will need to run through a few steps in order to properly setup and configure your environment. These steps will include provisioning some services, installing some tools, and downloading some dependencies as well. We will begin with AWS Cloud9. Technically, you should be able to complete many of the steps in these modules if you have a properly configured terminal. However, in order to avoid the "works on my machine" response you've surely experienced at some point in your career, I strongly encourage you to proceed with launching Cloud9.
 
@@ -18,13 +18,13 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 
 1. From the AWS Management Console, Select **Services** then select **Cloud9** under Developer Tools. 
 
-![Step 4](/images/getting_started/c9-step4.png)
+![Step 4](//static/images/getting_started/c9-step4.png)
 
 2. Select **Create environment**.
 
 3. Enter `Cisco-IAC-Cloud9` into **Name** and optionally provide a **Description**.
 
-![Step 5](/images/getting_started/c9-step5.png)
+![Step 5](//static/images/getting_started/c9-step5.png)
 
 4. Select **Next step**.
 
@@ -39,7 +39,7 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 - Back in the cloud9 settings page, select the created VPC and the created subnet 
 - Leave all other defaults unchanged.
 
-![Step 6](/images/getting_started/c9-step6-b.png)
+![Step 6](//static/images/getting_started/c9-step6-b.png)
 
 6. Select **Next step**.
 
@@ -49,7 +49,7 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 
 1. Once ready, your IDE will open to a welcome screen. Below that, you should see a terminal prompt. Close the Welcome tab and drag up the terminal window to give yourself more space to work in. 
 
-![Step 7](/images/getting_started/c9-step7.png)
+![Step 7](//static/images/getting_started/c9-step7.png)
 
 - You can run AWS CLI commands in here just like you would on your local computer. Remember for this workshop to run all commands within the Cloud9 terminal window rather than on your local computer.
 - Keep your AWS Cloud9 IDE opened in a browser tab throughout this workshop.

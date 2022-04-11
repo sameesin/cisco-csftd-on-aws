@@ -1,8 +1,8 @@
-+++
-title = "Cleanup"
-chapter = false
-weight = 10
-+++
+---
+title: "Cleanup"
+chapter: false
+weight: 10
+---
 
 ### Cleanup 
 {{% notice warning %}}
@@ -13,7 +13,7 @@ In order to prevent charges to your account we recommend cleaning up the infrast
     
     --Run *terraform destroy* to terminate and delete all the components created.
 
-![delete](/static/Images/clean_up/destroy.jpeg)
+![delete](/static//static/images/clean_up/destroy.jpeg)
 
 
 

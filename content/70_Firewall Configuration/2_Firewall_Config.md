@@ -1,8 +1,8 @@
-+++
-title = "Firewall Configuration"
-chapter = false
-weight = 2
-+++
+---
+title: "Firewall Configuration"
+chapter: false
+weight: 2
+---
 
 ## Introduction
 
@@ -261,7 +261,7 @@ python3 fmc.py --addr <fmc ip> --username <username> --password <password> --elb
 ```
 (Ensure that you have python 3 installed on your system)
 
-![script](/images/firewall_configuration/FMC_SCR_1.png)
+![script](//static/images/firewall_configuration/FMC_SCR_1.png)
 
 In the terminal itself you would be able to see all the successful tasks and errors (if any). 
 
@@ -270,12 +270,12 @@ To ensure that everything took place as per your requirment open the FMC-UI on y
 For eg: 
 
 **ACP:**
-![fmcapi_policy](/images/firewall_configuration/FMCAPI_POLICY.png) 
+![fmcapi_policy](//static/images/firewall_configuration/FMCAPI_POLICY.png) 
 
 It also shows that this was created using fmcapi
 
 **Devices:**
-![device](/images/firewall_configuration/FMC_DEVICE_SCR.png)
+![device](//static/images/firewall_configuration/FMC_DEVICE_SCR.png)
 
 Check the policy name attached to the FTD.
 

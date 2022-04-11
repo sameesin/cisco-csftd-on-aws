@@ -1,8 +1,8 @@
-+++
-title = "Network Load balancer"
-chapter = false
-weight = 1
-+++
+---
+title: "Network Load balancer"
+chapter: false
+weight: 1
+---
 
 ### Introduction
 Load balancer is a key component of the network. It distributes all the incoming traffic across any set of components like EC2 instance, DB, etc. 
@@ -23,7 +23,7 @@ resource "aws_lb" "external-lb" {
 1. Notice that the external load balancer points towards the outside subnet.
 2. Enabling cross zone load balancing is crucial to make sure that requests are evenly split between all the availability zones used. 
    
-  ![load_balancers](/images/deploy_loadbalancers/lb.jpeg) 
+  ![load_balancers](//static/images/deploy_loadbalancers/lb.jpeg) 
 
 Following are the variables created to set port and protocol on which the load balancer will listen to and use for checking health status of tartget instances 
 ```
@@ -61,7 +61,7 @@ resource "aws_lb_target_group" "external_front_end" {
   }
 }
 ```    
-  ![target_groups](/images/deploy_loadbalancers/target_groups.jpeg) 
+  ![target_groups](//static/images/deploy_loadbalancers/target_groups.jpeg) 
   
  **Note** : We can change the attributes of ```heath_check ```attachment as per specific needs.
 

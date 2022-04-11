@@ -1,8 +1,8 @@
-+++
-title = "Test Machines - Deployment"
-chapter = false
-weight = 2
-+++
+---
+title: "Test Machines - Deployment"
+chapter: false
+weight: 2
+---
 
 ### STEPS
 Aim is to deploy the Test Machines on AWS through terraform. 
@@ -20,19 +20,19 @@ And then run the following set of commands.
 
 --Run ```terraform init``` This will download & install all the necessary modules. 
 
-![init_fw](/images/deploy_loadbalancers/LOADBALANCER_INIT.png)
+![init_fw](//static/images/deploy_loadbalancers/LOADBALANCER_INIT.png)
 
 2. **<ins>terraform validate**</ins>
 
 --Run ```terraform validate``` to check for any syntax error in the code.
 
-![validate_lb](/images/deploy_loadbalancers/LOADBALANCER_VALIDATE.png)
+![validate_lb](//static/images/deploy_loadbalancers/LOADBALANCER_VALIDATE.png)
 
 3. **<ins>terraform plan**</ins>
 
 --To understand what the code will reflect and do on your AWS account run ```terraform plan --out awslab```, The resources shown with the '+' symbol are set to be created. It will show the number of additional resources to be added.
 
-![plan_lb](/images/deploy_loadbalancers/PLAN_LB.png)
+![plan_lb](//static/images/deploy_loadbalancers/PLAN_LB.png)
 
 4. **<ins>terrafrom apply**</ins>
 
@@ -40,12 +40,12 @@ And then run the following set of commands.
 
 After the deployment go to the AWS Console and check the instance is AWS Console for your application machine(EC2-ubuntu here) and bastion server.
 
-![application_server](/images/deploy_test_machines/instances.jpeg)
+![application_server](//static/images/deploy_test_machines/instances.jpeg)
 
 You can further expand the machine to see details specefic to it.
 
 Application server:
-![web](/images/deploy_test_machines/ec2_detail.jpeg)   
+![web](//static/images/deploy_test_machines/ec2_detail.jpeg)   
   
 Bastion
-![bastion](/images/deploy_test_machines/bastion_instance.jpeg)  
+![bastion](//static/images/deploy_test_machines/bastion_instance.jpeg)  

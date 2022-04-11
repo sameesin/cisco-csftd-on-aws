@@ -1,8 +1,8 @@
-+++
-title = "Subscribe to Cisco FTD and FMC PAYG AMIs"
-chapter = false
-weight = 3
-+++
+---
+title: "Subscribe to Cisco FTD and FMC PAYG AMIs"
+chapter: false
+weight: 3
+---
 
 ## Subscribe to Cisco FTD and FMC BYOL AMIs
 1. Ensure you are logged into your AWS Account
