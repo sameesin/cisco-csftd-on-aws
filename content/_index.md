@@ -17,7 +17,7 @@ In this lab, users will programmatically deploy Cisco Secure Firewall Threat Def
 
 ### Lab Topology
 
-![Topology](content/IMAGES/topology.png)
+![Topology](/content/IMAGES/topology.png)
 
 {{% notice warning %}}
 <p style='text-align: left;'>
