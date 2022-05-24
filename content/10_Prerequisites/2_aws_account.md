@@ -1,5 +1,9 @@
 ---
 title: "Create an AWS Account"
+<<<<<<< HEAD
+=======
+chapter: false
+>>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371
 weight: 2
 ---
 
