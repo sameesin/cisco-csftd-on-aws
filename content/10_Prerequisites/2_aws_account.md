@@ -1,21 +1,13 @@
-+++
-title = "Create an AWS Account"
-chapter = false
-weight = 2
-+++
+---
+title: "Create an AWS Account"
+weight: 2
+---
 
-{{% notice warning %}}
-You are responsible for the cost of the AWS services used while running this workshop in your AWS account.
-{{% /notice %}}
+::alert[You are responsible for the cost of the AWS services used while running this workshop in your AWS account]
 
-{{% notice warning %}}
 Your account must have the ability to create new IAM roles and scope other IAM permissions.
-{{% /notice %}}
 
-{{% notice note %}}
-If you already have an AWS account, and have IAM Administrator access, go to 
-[Provision Cloud9]({{< ref "#provision-cloud9" >}})
-{{% /notice %}}
+If you already have an AWS account, and have IAM Administrator access, go to [cloud9](/20-getting-started/1-getting-started)
 
 ## <ins>**Create an account**</ins>
 

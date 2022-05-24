@@ -2,7 +2,11 @@
 
 In this workshop, you will learn how to programmatically deploy Cisco Secure Firewall Threat Defence (FTD) and Firewall Management Center (FMC) using Infrastructure as Code (Terraform). You will also programmatically configure the firewalls once deployed to ensure it allows required traffic flow from internet to the test machine setup in the AWS environment.
 
-![Lab Topology](content/IMAGES/topology.png)
+<<<<<<< HEAD
+![Lab Topology](static/images/topology.png)
+=======
+![Lab Topology](static/Images/topology.png)
+>>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371
 
 ## Security
 

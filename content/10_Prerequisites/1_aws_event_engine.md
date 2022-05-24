@@ -1,8 +1,7 @@
-+++
-title = "AWS Event Engine"
-chapter = false
-weight = 1
-+++
+---
+title: "AWS Event Engine"
+weight: 1
+---
 
 
 ## Logging into AWS Event Engine
@@ -28,8 +27,8 @@ This account will expire at the end of the workshop and the all the resources cr
 
 Use a single region for the duration of this workshop. This workshop supports the following regions:
 
-- us-west-2 (US West - Oregon)
+- us-east-1 (US East - N. Virginia)
 
-Please select `US West - Oregon` in the top right corner.
+Please select `US East 1  - N. VirginiA` in the top right corner.
 
 ![Step 3](/static/images/getting_started/c9-step3.png)
