@@ -14,10 +14,6 @@ In this lab, users will programmatically deploy Cisco Secure Firewall Threat Def
 
 ### Lab Topology
 
-<<<<<<< HEAD:content/index.md
 ![Topology](/static/images/topology.png)
-=======
-![Topology](//static/images/topology.png)
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/index.en.md
 
 > The examples and sample code provided in this workshop are intended to be consumed as instructional content. These will help you understand how various AWS and Cisco services can be architected to build a solution while demonstrating best practices along the way. These examples are not intended for use in production environments.

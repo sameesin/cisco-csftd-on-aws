@@ -1,9 +1,5 @@
 ---
 title: "Network Load balancer"
-<<<<<<< HEAD:content/50_Deploy_LoadBalancers/1_LoadBalancers.md
-=======
-chapter: false
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/50_Deploy Load Balancers/1_Load Balancers.md
 weight: 1
 ---
 
@@ -31,11 +27,7 @@ resource "aws_lb" "external-lb" {
 2. Enabling cross zone load balancing is crucial to make sure that requests are evenly split between all the availability zones used. 
 3. Set the internal attribute to false for the internet facing load balancer. 
    
-<<<<<<< HEAD:content/50_Deploy_LoadBalancers/1_LoadBalancers.md
   ![load_balancers](/static/images/deploy_loadbalancers/lb.jpeg) 
-=======
-  ![load_balancers](//static/images/deploy_loadbalancers/lb.jpeg) 
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/50_Deploy Load Balancers/1_Load Balancers.md
 
 Following are the variables created to set port and protocol on which the load balancer will listen to and use for checking health status of tartget instances
 
@@ -73,11 +65,7 @@ resource "aws_lb_target_group" "external_front_end" {
   }
 }
 ```    
-<<<<<<< HEAD:content/50_Deploy_LoadBalancers/1_LoadBalancers.md
   ![target_groups](/static/images/deploy_loadbalancers/target_groups.jpeg) 
-=======
-  ![target_groups](//static/images/deploy_loadbalancers/target_groups.jpeg) 
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/50_Deploy Load Balancers/1_Load Balancers.md
   
 --> We can change the attributes of ```heath_check ```attachment as per specific needs.
 

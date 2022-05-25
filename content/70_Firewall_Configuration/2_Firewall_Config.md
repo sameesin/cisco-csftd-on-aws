@@ -1,9 +1,5 @@
 ---
 title: "Firewall Configuration"
-<<<<<<< HEAD:content/70_Firewall_Configuration/2_Firewall_Config.md
-=======
-chapter: false
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/70_Firewall Configuration/2_Firewall_Config.md
 weight: 2
 ---
 
@@ -266,11 +262,7 @@ python3 fmc.py --addr ADDR --username USERNAME --password PASSWORD --elb1 ELB1 -
 replace ADDR, USERNAME, PASSWORD, ELB1 & ELB2 with respctive values.
 
 
-<<<<<<< HEAD:content/70_Firewall_Configuration/2_Firewall_Config.md
 ELB1 & ELB2 are the private IPs of your load balancers which can be obtained using the *Step-1 from firewall configuration module.*
-=======
-![script](//static/images/firewall_configuration/FMC_SCR_1.png)
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/70_Firewall Configuration/2_Firewall_Config.md
 
 
 >Note: FMC Script can take upto 10 min to properly execute based on the delay added in the code.
@@ -282,7 +274,6 @@ A log file by the name of ```test.txt``` will be created in the same repository 
 To ensure that everything took place as per your requirment open the FMC-UI on your browser and check things there. 
 
 For eg: 
-<<<<<<< HEAD:content/70_Firewall_Configuration/2_Firewall_Config.md
 1. **ACP:**
 ![fmcapi_policy](/static/images/firewall_configuration/FMCAPI_POLICY.png) 
 
@@ -290,16 +281,6 @@ It also shows that this was created using fmcapi
 
 2. **Devices:**
 ![device](/static/images/firewall_configuration/FMC_DEVICE_SCR.png)
-=======
-
-**ACP:**
-![fmcapi_policy](//static/images/firewall_configuration/FMCAPI_POLICY.png) 
-
-It also shows that this was created using fmcapi
-
-**Devices:**
-![device](//static/images/firewall_configuration/FMC_DEVICE_SCR.png)
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/70_Firewall Configuration/2_Firewall_Config.md
 
 Check the policy name attached to the FTD.
 

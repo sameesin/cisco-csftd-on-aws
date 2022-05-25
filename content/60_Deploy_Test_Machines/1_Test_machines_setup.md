@@ -1,9 +1,5 @@
 ---
 title: "Test Machines Setup"
-<<<<<<< HEAD:content/60_Deploy_Test_Machines/1_Test_machines_setup.md
-=======
-chapter: false
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/60_Deploy Test Machines/1_Test_machines_setup.md
 weight: 1
 ---
 

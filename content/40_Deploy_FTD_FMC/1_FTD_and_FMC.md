@@ -1,9 +1,5 @@
 ---
 title: "Deployment of FTD and FMC"
-<<<<<<< HEAD:content/40_Deploy_FTD_FMC/1_FTD_and_FMC.md
-=======
-chapter: false
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/40_Deploy FTD and FMC/1_FTD and FMC.md
 weight: 1
 ---
 

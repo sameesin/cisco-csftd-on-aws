@@ -1,9 +1,5 @@
 ---
 title: "Setting up network resources"
-<<<<<<< HEAD:content/30_Setup_Network_Resources/1_Network resources.md
-=======
-chapter: false
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/30_Setup Network Resources/1_Network resources.md
 weight: 1
 ---
 
@@ -23,11 +19,7 @@ Now in this section we are creating all the required network resources for creat
 
    Open aws console to check if the VPC is up and running
 
-<<<<<<< HEAD:content/30_Setup_Network_Resources/1_Network resources.md
 ![Created subnets](/static/images/setup_network_resources/vpc.jpeg)  
-=======
-![Created subnets](//static/images/setup_network_resources/vpc.jpeg)  
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/30_Setup Network Resources/1_Network resources.md
 
 
 
@@ -175,11 +167,7 @@ resource "aws_internet_gateway" "int_gw" {
   }
 }
 ```
-<<<<<<< HEAD:content/30_Setup_Network_Resources/1_Network resources.md
  ![internet_gateway](/static/images/setup_network_resources/igw.jpeg)   
-=======
- ![internet_gateway](//static/images/setup_network_resources/igw.jpeg)   
->>>>>>> f75898c75d08fd68a38aaa8372166c9192ec4371:content/30_Setup Network Resources/1_Network resources.md
  <br>
 
 Now to create route tables and routes, we will use **aws_route_table** terraform resource.
