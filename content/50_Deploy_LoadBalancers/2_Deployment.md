@@ -6,11 +6,11 @@ weight: 2
 ### STEPS
 Aim is to deploy the Load balancer on AWS through terraform. 
 
-Navigate to the Cloud9 terminal and copy **loadbalancers.tf** file from the Deployment_resources folder to the Deployment folder.
+Navigate to the Cloud9 terminal and copy **loadbalancers.tf** file from the Resources folder to the Development folder.
 
 ```console
-  cp ./Deployment_resources/loadbalancers.tf ./Deployment/loadbalancers.tf
-  cd ./Deployment
+  cp ./Resources/loadbalancers.tf ./Development/loadbalancers.tf
+  cd ./Development
 ``` 
 
 And then run the following set of commands.
@@ -35,7 +35,7 @@ Run this to check for any syntax error in the code.
 
 3. **<ins>terraform plan**</ins>
 
---To understand what the code will reflect and do on your AWS account run 
+To understand what the code will reflect and do on your AWS account run 
 ```console
 terraform plan --out awslab
 ```
@@ -45,7 +45,7 @@ The resources shown with the '+' symbol are set to be created. It will show the 
 
 4. **<ins>terrafrom apply**</ins>
 
---If you are satisfied with the plan of the configuration, run the following to apply it.
+If you are satisfied with the plan of the configuration, run the following to apply it.
 
 ```console
 terraform apply awslab

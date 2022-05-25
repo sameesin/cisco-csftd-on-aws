@@ -1,16 +1,16 @@
 ---
-title: "FTD and FMC - Deployment"
-weight: 2
+title: "FTD and FMC Deployment"
+weight: 3
 ---
 
 ### STEPS
 Aim is to deploy Cisco Secure FTDv and FMCv instances on AWS through Terraform. 
 
-Navigate to the Cloud9 terminal and copy **instances.tf** file from the Deployment_resources folder to the Deployment folder.
+Navigate to the Cloud9 terminal and copy **instances.tf** file from the Resources folder to the Development folder.
 
 ```console
-  cp ./Deployment_resources/instances.tf ./Deployment/instances.tf
-  cd ./Deployment
+  cp ./Resources/instances.tf ./Development/instances.tf
+  cd ./Development
 ``` 
 
 >Note: We will deploy ```2``` FTDs and ```1``` FMC instances
@@ -19,7 +19,6 @@ And then run the following set of commands.
 
 1. **<ins>terraform init</ins>**
 
-   --Run 
    ```console 
    terraform init
    ``` 
@@ -29,7 +28,6 @@ And then run the following set of commands.
 
 2. **<ins>terraform validate**</ins>
 
-    --Run 
     ```console
     terraform validate
     ``` 
@@ -39,7 +37,7 @@ And then run the following set of commands.
 
 3. **<ins>terraform plan**</ins>
 
-    --To understand what the code will reflect and do on your AWS account run 
+    To understand what the code will reflect and do on your AWS account run 
     ```console
     terraform plan --out awslab
     ```
@@ -49,7 +47,7 @@ And then run the following set of commands.
 
 4. **<ins>terraform apply**</ins>
 
-    --If you are satisfied with the plan of the configuration, run 
+    If you are satisfied with the plan of the configuration, run 
     ```console
     terraform apply awslab
     ```
@@ -59,17 +57,17 @@ Open your AWS Management Console to see if all the resources are correctly deplo
 
 **EC2:**
 
---FMC and both the FTD are highlighted. 
+- FMC and both the FTD are highlighted. 
 ![instances](/static/images/deploy_ftd_fmc/INSTANCE_FTD_FMC.png)
 
 **FMC:** 
 
---Open the FMC instance to see the public IP and other details of FMC.
+- Open the FMC instance to see the public IP and other details of FMC.
 ![fmc](/static/images/deploy_ftd_fmc/fmc_detail.jpeg)
 
 **FTD:**
 
--- FTD can also be expanded in the similar fashion
+- FTD can also be expanded in the similar fashion
 ![ftd](/static/images/deploy_ftd_fmc/ftd_detail.jpeg)
 
 

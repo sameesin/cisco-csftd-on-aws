@@ -91,7 +91,7 @@ Now we want to clone the repository that contains all the content and files you 
 
 ```bash
 cd ~/environment && \
-git clone https://github.com/CiscoDevnet/secure-firewall/aws-terraform.git
+git clone https://github.com/CiscoDevnet/secure-firewall/workshops/aws-terraform-workshop.git
 ```
 
 5. **Create a Key Pair**

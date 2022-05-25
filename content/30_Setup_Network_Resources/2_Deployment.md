@@ -6,31 +6,27 @@ weight: 2
 ### <ins>**STEPS**</ins>
 Aim is to deploy all the resources created on AWS through terraform. 
 
-Open the Cloud9 terminal and navigate to the folder named **Deployment**
-Ensure the following files are present in the folder.
+Open the Cloud9 terminal.
+If you are using AWS Event Engine navigate to the folder named **AWS_Workshop_Code_event_engine/Working_Directory/Resources**
 
-- networks.tf
-- providers.tf
-- variables.tf
-- terraform.tfvars
+If you are using AWS Account navigate to the folder named **AWS_Workshop_Code_aws_account/Working_Directory/Resources**
 
-Ensure the following folder is present in the folder
-- modules
-- deployment folder
-
-Navigate to the Cloud9 terminal and copy **network.tf** file from the Deployment_resources folder to the Deployment folder.
+Copy **providers.tf**, **networks.tf**, **variables.tf**, **terraform.tfvars** files from the Resources folder to the Development folder.
 
 1. **<ins>Enter values for Terraform variables</ins>**
    - provide the 'aws_access_key' and 'aws_secret_key' of your user.
    - provide the name of the key created in previous section
    - Rest of the variables have been provided with a value already, however if you wish you can modify those values
 
-And then run the following sets of command.
+And then run the following set of commands.
 
 2. **<ins>terraform init</ins>**
 
-   --Run ```terraform init```. 
-   This will download & install all the necessary packages needed, like the aws package. 
+```console
+terraform init
+```
+
+This will download & install all the necessary packages needed, like the aws package. 
 <br>  
 <br>
    ![init_nw](/static/images/setup_network_resources/INIT_NW.png)
@@ -38,22 +34,34 @@ And then run the following sets of command.
 
 3. **<ins>terraform validate</ins>**
 
-    --Run ```terraform validate``` to check for any syntax error in the code.
+```console
+terraform validate
+``` 
 
-    ![validate_nw](/static/images/setup_network_resources/VALIDATE_NW.png)  
-  <br>  
+Run this to check for any syntax error in the code.
+
+![validate_nw](/static/images/setup_network_resources/VALIDATE_NW.png)  
+<br>  
 
 4. **<ins>terraform plan</ins>**
 
-    --To understand what the code will reflect and do on your AWS account run ```terraform plan --out awslab```, The resources shown with the '+' symbol are set to be created. It will show the number(may be different for your topology) of resources to be added.
+To understand what the code will reflect and do on your AWS account run 
+```console
+terraform plan --out awslab
+``` 
+The resources shown with the '+' symbol are set to be created. It will show the number(may be different for your topology) of resources to be added.
 
-    ![plan_nw](/static/images/setup_network_resources/PLAN_NW.png)
+![plan_nw](/static/images/setup_network_resources/PLAN_NW.png)
 
 5. **<ins>terrafrom apply</ins>**
 
-    --If you are satisfied with the plan of the configuration, run ```terraform apply awslab``` to apply it.
+If you are satisfied with the plan of the configuration apply it.
 
-    ![apply_nw](/static/images/setup_network_resources/APPLY_NW.png)
+```console
+terraform apply awslab
+```
+
+![apply_nw](/static/images/setup_network_resources/APPLY_NW.png)
 
 Open your AWS Management Console to see if all the resources are correctly deployed. 
 
