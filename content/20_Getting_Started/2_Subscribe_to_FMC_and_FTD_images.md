@@ -3,7 +3,7 @@ title: "Subscribe to Cisco FTDv and FMCv BYOL AMIs"
 chapter: false
 weight: 3
 ---
-::alert[You only need to subscribe to Cisco FTDv and FMCv BYOL AMIs from the AWS marketplace if you are using your own AWS account for this lab. If you are using the AWS Event Engine, please skip this section and proceed to [Setup Network Resources](../..30_setup_network_resources)]
+::alert[You only need to subscribe to Cisco FTDv and FMCv BYOL AMIs from the AWS marketplace if you are using your own AWS account for this lab. If you are using the AWS Event Engine, please skip this section and proceed to [Deploy Network Resources](../../30_setup_network_resources)]
 
 ## Subscribe to Cisco FTDv and FMCv BYOL AMIs
 1. Ensure you are logged into your AWS Account

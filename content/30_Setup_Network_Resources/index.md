@@ -1,5 +1,5 @@
 ---
-title: "Setup AWS Network Resources"
+title: "Deploy AWS Network Resources"
 weight: 30
 ---
 
