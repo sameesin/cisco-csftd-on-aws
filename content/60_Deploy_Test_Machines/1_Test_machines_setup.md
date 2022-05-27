@@ -1,5 +1,5 @@
 ---
-title: "Test Machines Setup"
+title: "Test Machines Setup - Description"
 weight: 1
 ---
 

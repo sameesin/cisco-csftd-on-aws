@@ -1,5 +1,5 @@
 ---
-title: "Network Load balancer"
+title: "Network Load Balancer - Description"
 weight: 1
 ---
 

@@ -1,10 +1,10 @@
 ---
-title: "FTD and FMC Deployment"
+title: "FTD and FMC - Deployment"
 weight: 3
 ---
 
 ### STEPS
-Aim is to deploy Cisco Secure FTDv and FMCv instances on AWS through Terraform. 
+Lets proceed with the deployment. The aim here is to deploy Cisco Secure FTDv and FMCv instances on AWS through Terraform. 
 
 Navigate to the Cloud9 terminal and copy **instances.tf** file from the Resources folder to the Development folder.
 

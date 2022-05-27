@@ -1,18 +1,6 @@
 ---
-title: "Deploy FTD and FMC in AWS"
+title: "Deploy FTDv and FMCv in AWS"
 weight: 40
 ---
 
-If you are using Event Engine:
-
-[Cisco Secure Firewall Setup - Description](/40_deploy_ftd_fmc/1_ftd_and_fmc_event_engine.md)
-
----
-
-If you are using AWS Account:
-
-[Cisco Secure Firewall Setup - Description](/40_deploy_ftd_fmc/2_ftd_and_fmc_aws_account.md)
-
----
-
-[Cisco Secure Firewall - Deployment](/40_deploy_ftd_fmc/3_deployment.md)
+In this section, we will deploy Cisco FTDv and FMCv in AWS using terraform automation. We will first describe and walk through the relevant terraform code snippets and then proceed with the deployment.

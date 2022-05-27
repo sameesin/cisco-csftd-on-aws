@@ -3,6 +3,4 @@ title: "Deploy Network Loadbalancer"
 weight: 50
 ---
 
-[LoadBalancers Setup - Description](/50_deploy_loadbalancers/1_loadbalancers.md)
-
-[LoadBalancers- Deployment](/50_deploy_loadbalancers/2_deployment.md)
+In this section, we will deploy AWS Network Load Balancer to load balance traffic to the FTDv firewall in AWS using terraform automation. We will first describe and walk through the relevant terraform code snippets and then proceed with the deployment.

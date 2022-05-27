@@ -1,11 +1,11 @@
 ---
-title: "AWS Account - Deployment of FTD and FMC"
+title: "Personal AWS Account: FTDv and FMCv - Description"
 weight: 2
 ---
 
 ## **Introduction**
 
- The AMIs used to deploy Cisco secure FTD and FMC are available in the AWS Marketplace.
+ When using you own AWS account, the AMIs used to deploy Cisco secure FTDv and FMCv are available in the AWS Marketplace. You subscribed to these AMIs in the [Getting Started](/20_Getting_Started/2_Subscribe_to_FMC_and_FTD_images.md) section earlier.
 
 ### <ins>**FMC**</ins>
 The code below is for creating one FMC in any one of the AZ which will host the 2 FTD instances.
@@ -74,7 +74,7 @@ We pass the user data and the network interface specific to FMC. The fmc_startup
 
 The code below is deploying two FTD instances, each in a different availability zone with different network interfaces *outside*, *inside*, *diagnostic* and *management* attached to it.
 
-The data block to fetch private ami to create ftd:  
+The data block to fetch ami from AWS marketplace to create ftd:  
 
 ```terraform
 data "aws_ami" "ftdv" {

@@ -1,5 +1,5 @@
 ---
-title: "Setting up network resources"
+title: "Network Resources - Description"
 weight: 1
 ---
 

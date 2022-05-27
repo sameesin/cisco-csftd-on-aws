@@ -3,4 +3,4 @@ title: "Testing Traffic"
 weight: 80
 ---
 
-[Testing traffic - Setup Validation](/80_testing_traffic/1_testing_traffic.md)
+In this section, we will test traffic between the test machines and the firewalls that are behind an AWS network load balancer

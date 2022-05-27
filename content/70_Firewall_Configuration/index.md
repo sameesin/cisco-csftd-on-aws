@@ -3,6 +3,4 @@ title: "Firewall Configuration - Programmatically"
 weight: 70
 ---
 
-[Firewall Configuration - Prerequisites](/70_firewall_configuration/1_prerequisites.md)
-
-[Firewall Configuration - Deployment](/70_firewall_configuration/2_firewall_config.md)
+In this section, we will perform and firewall configuration. We will first walk through the firewall configuration prerequisites and then deploy and then proceed with the firewall configuration deployment.

@@ -1,10 +1,10 @@
 ---
-title: "Subscribe to Cisco FTD and FMC BYOL AMIs"
+title: "Subscribe to Cisco FTDv and FMCv BYOL AMIs"
 chapter: false
 weight: 3
 ---
 
-## Subscribe to Cisco FTD and FMC BYOL AMIs
+## Subscribe to Cisco FTDv and FMCv BYOL AMIs
 1. Ensure you are logged into your AWS Account
 2. Navigate to [Cisco Firepower NGFW Virtual (NGFWv) BYOL](https://aws.amazon.com/marketplace/pp/prodview-p2336sqyya34e?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)
 3. Click on Continue to Subscribe

@@ -1,10 +1,10 @@
 ---
-title: "Load Balancer - Deployment"
+title: "Network Load Balancer - Deployment"
 weight: 2
 ---
 
 ### STEPS
-Aim is to deploy the Load balancer on AWS through terraform. 
+Lets proceed with the deployment. The aim here is to deploy the Load balancer on AWS through terraform. 
 
 Navigate to the Cloud9 terminal and copy **loadbalancers.tf** file from the Resources folder to the Development folder.
 

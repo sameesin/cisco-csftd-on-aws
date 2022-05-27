@@ -1,15 +1,16 @@
 ---
-title: "Event Engine - Deployment of FTD and FMC"
+title: "Event Engine: FTDv and FMCv - Description"
 weight: 1
 ---
 
 ## **Introduction**
 
- The AMIs used to deploy Cisco secure FTD and FMC are available in your AMI Owned Images.
+ When using the AWS Events Engine, the AMIs used to deploy Cisco secure FTDv and FMCv should have been deployed to your event engine platform prior to the event and are available in your AMI Owned Images. If you dont see the AMIs, please contact the event administrator.
 
 ### <ins>**FMC**</ins>
-The code below is for creating one FMC in any one of the AZ which will host the 2 FTD instances. 
-The data source to fetch private ami id of fmc:  
+The code below is for creating one FMC in any one of the AZ which will host the 2 FTDv instances. 
+
+Here is the data source to fetch private ami id of fmc:  
 
 ```
 data "aws_ami" "fmcv" {
@@ -38,7 +39,7 @@ data "template_file" "fmc_startup_file" {
 }
 ```
 
-The AMI that we are using here is the private one.
+The AMI that we are using here is a private AMI.
 
 <ins>**Creation of FMC**</ins>
 ```
@@ -57,7 +58,7 @@ resource "aws_instance" "fmcv" {
   }
 }
 ```
-We pass the user data and the network interface specific to FMC. The fmc_startup_file is like this:
+We pass the user data and the network interface specific to FMC. The fmc_startup_file looks like this:
 ```
 #FMC
 {
@@ -70,7 +71,7 @@ We pass the user data and the network interface specific to FMC. The fmc_startup
 
 The code below is deploying two FTD instances, each in a different availability zone with different network interfaces like *outside*, *inside*, *diagnostic* and *management* attached to it.
 
-The data block to fetch private ami to create ftd:  
+Here is the code snippet that fetches the private ami to create ftd:  
 
 ```
 data "aws_ami" "ftdv" {

@@ -3,6 +3,4 @@ title: "Deploy Test Machines"
 weight: 60
 ---
 
-[Test Machines Setup - Description](/60_deploy_test_machines/1_test_machines_setup.md)
-
-[Test Machines Setup - Deployment](/60_deploy_test_machines/2_deployment.md)
+In this section, we will deploy test machines to test traffic flow to/from the firewall. We will first describe and walk through the relevant terraform code snippets and then proceed with the deployment.

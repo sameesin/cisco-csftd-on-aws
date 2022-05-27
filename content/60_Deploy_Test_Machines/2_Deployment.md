@@ -1,10 +1,10 @@
 ---
-title: "Test Machines - Deployment"
+title: "Test Machines Setup - Deployment"
 weight: 2
 ---
 
 ### STEPS
-Aim is to deploy the Test Machines on AWS through terraform. 
+Lets proceed with the deployment. The aim here is to deploy the Test Machines on AWS through terraform. 
 
 
 >**IMPORTANT**: We will first run our Bastion terraform plan and then run terraform plan for application server.  
