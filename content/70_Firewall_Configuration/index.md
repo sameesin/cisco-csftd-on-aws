@@ -1,5 +1,5 @@
 ---
-title: "Firewall Configuration - Programmatically"
+title: "Firewall Configuration"
 weight: 70
 ---
 
