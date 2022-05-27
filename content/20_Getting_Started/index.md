@@ -7,4 +7,4 @@ All operations in this lab are conduction from an AWS cloud9 environment . Pleas
 
 NOTE: Follow the link below only if you are using your personal AWS account, otherwise continue proceed to [Setup Network Resources](../30_setup_network_resources)
 
-Click [here](20_getting_started/2_subscribe_to_FMC_and_FTD_images.md) to follow instructions on how to subscribe to Cisco FTDv and FMCv images. 
+Click [here](20_getting_started/2_subscribe_to_fmc_and_ftd_images.md) to follow instructions on how to subscribe to Cisco FTDv and FMCv images. 
