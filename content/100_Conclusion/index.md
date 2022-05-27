@@ -2,7 +2,7 @@
 title: "Conclusion"
 weight: 100
 ---
-## Introduction
+## Congratulations!
 You’ve successfully finished our the Cisco Secure Firewall on AWS workshop!
 
 In this workshop, you’ve learned how to use terraform to:
