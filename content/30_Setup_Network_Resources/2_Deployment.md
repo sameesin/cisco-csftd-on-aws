@@ -79,7 +79,7 @@ Search for your VPC in subnets and see all of them.
  ![internet_gateway](/static/images/setup_network_resources/igw.jpeg)
  
 **Security Group:**
-![SG](/static/Images/setup_network_resources/security_groups.jpeg)
+![SG](/static/images/setup_network_resources/security_groups.jpeg)
 
 **Route Tables:** 
 ![routes_tables](/static/images/setup_network_resources/routetables.jpeg)

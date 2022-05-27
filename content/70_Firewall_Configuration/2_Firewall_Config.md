@@ -269,7 +269,7 @@ ELB1 & ELB2 are the private IPs of your load balancers which can be obtained usi
 
 A log file by the name of ```test.txt``` will be created in the same repository to examine the status.
 
-![logs](/static/Images/testing-traffic/FMC_TEXT_TXT.png) 
+![logs](/static/images/testing-traffic/FMC_TEXT_TXT.png) 
 
 To ensure that everything took place as per your requirment open the FMC-UI on your browser and check things there. 
 
