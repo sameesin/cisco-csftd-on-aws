@@ -7,9 +7,11 @@ weight: 2
 Aim is to deploy all the resources created on AWS through terraform. 
 
 Open the Cloud9 terminal.
-If you are using AWS Event Engine navigate to the folder named **AWS_Workshop_Code_event_engine/Working_Directory/Resources**
+If you are using AWS Event Engine navigate to the folder named **AWS_Workshop_Code_Eventengine/Working_Directory/Resources**
 
-If you are using AWS Account navigate to the folder named **AWS_Workshop_Code_aws_account/Working_Directory/Resources**
+If you are using AWS Account navigate to the folder named **AWS_Workshop_Code/Working_Directory/Resources**
+
+Create a new folder inside Working_Directory named Development
 
 Copy **providers.tf**, **networks.tf**, **variables.tf**, **terraform.tfvars** files from the Resources folder to the Development folder.
 
@@ -18,7 +20,7 @@ Copy **providers.tf**, **networks.tf**, **variables.tf**, **terraform.tfvars** f
    - provide the name of the key created in previous section
    - Rest of the variables have been provided with a value already, however if you wish you can modify those values
 
-And then run the following set of commands.
+And then run the following set of commands inside the Development folder.
 
 2. **<ins>terraform init</ins>**
 
@@ -66,21 +68,18 @@ terraform apply awslab
 Open your AWS Management Console to see if all the resources are correctly deployed. 
 
 **Subnets:** 
+<br>
 Search for your VPC in subnets and see all of them.
 <br>
- 
 
-![subnets](/static/images/setup_network_resources/subnets.jpeg)
+![subnets](/static/images/setup_network_resources/subnets.png)
 
-**Interface:** 
-![interfaces](/static/images/setup_network_resources/network_interfaces.jpeg)
+**Security Groups**
+![Security Groups](/static/images/setup_network_resources/securitygroups.png)
 
-**Internet_Gateway:**
- ![internet_gateway](/static/images/setup_network_resources/igw.jpeg)
- 
-**Security Group:**
-![SG](/static/images/setup_network_resources/security_groups.jpeg)
+**Interfaces:** 
+![interfaces](/static/images/setup_network_resources/network_interfaces.png)
 
 **Route Tables:** 
-![routes_tables](/static/images/setup_network_resources/routetables.jpeg)
+![routes_tables](/static/images/setup_network_resources/routetables.png)
 

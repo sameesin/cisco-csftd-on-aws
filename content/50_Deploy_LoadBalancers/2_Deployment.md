@@ -56,15 +56,13 @@ terraform apply awslab
 Open your AWS Management Console to see if all the resources are correctly deployed. 
 
 **Load Balancer:** 
-![lb](/static/images/deploy_loadbalancers/lb.jpeg)
+![lb](/static/images/deploy_loadbalancers/lb.png)
 
 You can click on any one to see detailed info like this:
 ![ext_lb](/static/images/deploy_loadbalancers/ext_lb.png)  
-<br>    
 
-![int_lb](/static/images/deploy_loadbalancers/app_lb.png)  
 
 **Target Groups:**  
 
-![target_group](/static/images/deploy_loadbalancers/target_groups.jpeg)
+![target_group](/static/images/deploy_loadbalancers/target_group.png)
 
