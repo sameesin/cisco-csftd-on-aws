@@ -100,7 +100,7 @@ To create a key pair go to AWS Management console, EC2 > Network & Security > Ke
 
 >Note: KeyPair will be helpful in the scenario where we need to access an instance via SSH
 
-![key_pair](/static/images/getting_started/KEY-PAIR.png)
+![key_pair](/static/images/getting_started/key-pair.png)
 
 ### Tips
 
