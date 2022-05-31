@@ -6,10 +6,11 @@ weight: 1
 ### Introduction
 
 Now in this section we are creating all the required network resources for creating our topology.Such as  
-1. Subnets  
-2. Interfaces
-3. Security groups
-4. Route tables  
+1. Subnets
+2. Security Groups
+3. Network Interfaces
+4. Route tables
+5. Elastic IPs
 
  Since VPC is already up & running lets get started with our first resource that is **```Subnet```** 
 
@@ -38,7 +39,7 @@ data "aws_vpc" "ftd_vpc" {
 
 ## **2. <ins>Subnets**</ins>
   
-In this workshop we are creating the following subnets.  
+In this lab we are creating the following subnets.  
 
 * Inside subnets      - **```2```** (one in each AZ)  
 * Outside subnets     - **```2```** (one in each AZ)  
@@ -74,9 +75,24 @@ data "aws_availability_zones" "available" {}
 > **Note**: If needed, the value of just single availability zone can be passed like this: ```availability_zone = "ap-south-1a"```
 
 
-## **3. <ins>Network Interfaces** </ins>: 
+## **3. <ins>Security Groups** </ins>: 
+
+In this lab we are creating the following security groups which will be associated with the respective interfaces.
+
+| Name | Interface | Details | Ports |
+| ---- | --------- | ------- | ----- |
+| outside_sg | outside | Restrict traffic to outside interface only from External load balancer subnet | SSH, HTTP |
+| inside_sg | inside | Restrict traffic to inside interface only from Web servers | HTTP |
+| mgmt_sg | FTD Management | Restrict access to management interface only from FMC | TCP/8305 |
+| no_access | diagnostic interface | Restrict all access | - |
+| fmc_mgmt_sg | FMC Management | Restrict access to FMC management interface to HTTPS from external network | HTTPS |
+| fmc_mgmt_sg | FMC Management | Restrict access to FMC management interface only from FTD management interface | TCP/8305 |
+
+We will allow all outbound traffic in the security groups.
+
+## **4. <ins>Network Interfaces** </ins>: 
   
-  In this model we are creating the following network interfaces. 
+  In this lab we are creating the following network interfaces. 
 
   * ftd_inside   -  **```2```** (one in each AZ)
   * ftd_outside  - **```2```** (one in each AZ)
@@ -93,84 +109,15 @@ resource "aws_network_interface" "ftd_outside" {
   subnet_id         = local.mgmt_subnet[local.azs[count.index] - 1].id
   source_dest_check = false
   private_ips       = [var.ftd_outside_ip[count.index]]
+  security_groups   = [aws_security_group.outside_sg.id]
 }
 ```
-
-
-
-## 4. <ins>**Security Groups :**</ins> 
-<br>
- In this workshop we are creating following two security groups.  
-
- * allow_all (allows all traffic)
- * default  (allows traffic according to the rules given)
-
-  
-A security group can be heavily customized according to the needs of particular network, the example given below focuses on allowing everything for our **allow_all** SG.
-
-<br>
-<ins>Code snippet </ins>:
-
-```
-resource "aws_security_group" "allow_all" {
-  name        = "Allow All"
-  description = "Allow all traffic"
-  vpc_id      = aws_vpc.ftd_vpc.id
-  dynamic "ingress" {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
-      description = null
-    }
-  }
-  dynamic "egress" {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      cidr_blocks = ["0.0.0.0/8"]
-      description = null
-    }
-  }
-
-```
-Setting CIDR to ```0.0.0.0/0``` will ensure that we all ips to connect with our server. Since we are only concerned with TCP connection thus we set the **from_port** & **to_port** attributes to port number 22 and set the protocol to TCP in the ingress.
-
-This kind of egress part will allow all external connections, it can  be changed if more restrictions are required.  
-
-To attach the security group to the network interface we need to use ```aws_network_interface_sg_attachment```
-
-```
-resource "aws_network_interface_sg_attachment" "ftd_outside_attachment" {
-  count                = 2
-  security_group_id    = aws_security_group.allow_all.id
-  network_interface_id = aws_network_interface.ftd_outside[count.index].id
-}
-```
-Simply pass the SG id and network interface id to complete the attachment.
-   
 
 ## **5. <ins>Route tables**</ins>:
 
 Route tables are important for VPC to keep a track of where the traffic from our subnets (or gateway) is directed to.
 
-First create an [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) for your VPC. Internet gateway is required for several reasons, without it the internet-routable traffic can't move. Gateway is also responisble to perform NAT on instances having public ip address.    
-  
-
-Code snippet to create internet gateway:
-
-```
-resource "aws_internet_gateway" "int_gw" {
-  vpc_id = aws_vpc.ftd_vpc.id
-  tags = {
-    Name = "Internet Gateway"
-  }
-}
-```
- ![internet_gateway](/static/images/setup_network_resources/igw.jpeg)   
- <br>
-
-Now to create route tables and routes, we will use **aws_route_table** terraform resource.
+To create route tables and routes, we will use **aws_route_table** terraform resource.
 ```
 resource "aws_route_table" "ftd_outside_route" {
   vpc_id = aws_vpc.ftd_vpc.id

@@ -91,7 +91,7 @@ Now we want to clone the repository that contains all the content and files you 
 
 ```bash
 cd ~/environment && \
-git clone https://github.com/CiscoDevnet/secure-firewall/workshops/aws-terraform-workshop.git
+git clone https://github.com/CiscoDevnet/secure-firewall.git
 ```
 
 5. **Create a Key Pair**
@@ -108,8 +108,8 @@ Keep an open scratch pad in Cloud9 or a text editor on your local computer for n
 
 ### Recap
 
-- This is your unique AWS account for this workshop. It will expire after you finish today.
+- In case of AWS Event Engine, this is your unique AWS account for this workshop. It will expire after you finish today.
 
 - Use the same region for the entirety of this workshop.
 
-- Keep your [AWS Cloud9 IDE](#aws-cloud9-ide) opened in a browser tab
+- Keep your AWS Cloud9 IDE opened in a browser tab

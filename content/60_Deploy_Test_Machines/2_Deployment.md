@@ -7,7 +7,7 @@ weight: 2
 Lets proceed with the deployment. The aim here is to deploy the Test Machines on AWS through terraform. 
 
 
->**IMPORTANT**: We will first run our Bastion terraform plan and then run terraform plan for application server.  
+>**IMPORTANT**: We will first run our Bastion terraform plan and then run terraform plan for web servers.  
 
 
 
@@ -121,7 +121,7 @@ After the deployment go to the AWS Console and check the instance is AWS Console
 
 You can further expand the machine to see details specific to it.
 
-Application server:
+Web server:
 ![web](/static//images/deploy_test_machines/ec2_detail.jpeg)   
   
 
