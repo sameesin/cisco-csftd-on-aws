@@ -35,10 +35,14 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
   - provide a name ```IAC-VPC``` and CIDR ```10.0.0.0/16``` for the VPC
   - provide a name ```mgmt``` and CIDR ```10.0.0.0/24``` for the subnet
   - click on Create VPC
+
+![Step 5](/static/images/getting_started/c9-step6-b.png)
+
+![Step 5](/static/images/getting_started/vpc-1.png)
+
+![Step 5](/static/images/getting_started/vpc-2.png)
 - Back in the cloud9 settings page, select the created VPC and the created subnet 
 - Leave all other defaults unchanged.
-
-![Step 6](/static/images/getting_started/c9-step6-b.png)
 
 6. Select **Next step**.
 

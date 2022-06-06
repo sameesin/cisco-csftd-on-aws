@@ -4,6 +4,11 @@ weight: 2
 ---
 
 ::alert[You are responsible for the cost of the AWS services used while running this workshop in your AWS account]
+You will be charged for: 
+- active IP Addresses assigned to the ENIs.
+- EC2 instances running Cisco Secure Firewall Threat Defence (FTDv) and Firewall Management Center (FMC), Bastion Host, Web Servers and cloud9.
+- Network Load Balancers
+- Elastic IPs
 
 Your account must have the ability to create new IAM roles and scope other IAM permissions.
 

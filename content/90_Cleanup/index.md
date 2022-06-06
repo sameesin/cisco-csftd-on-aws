@@ -18,5 +18,15 @@ terraform destroy
 
 ![delete](/static/images/clean_up/DESTROY.png)
 
-Resources like VPC and KeyPair, if created manually, needs to be destoryed in a similar manner via the console.
+**<ins>Delete Cloud9</ins>**
+
+Navigate to AWS Cloud9 > Your Environments
+
+Select the environment you created in the getting started section
+
+Click on Delete
+
+![cloud9_delete](/static/images/clean_up/cloud9_delete.png)
+
+::alert[Resources like VPC and KeyPair that were created manually, needs to be destoryed in a similar manner via the AWS console.]
 

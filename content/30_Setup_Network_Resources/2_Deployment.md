@@ -7,20 +7,37 @@ weight: 2
 Aim is to deploy all the resources created on AWS through terraform. 
 
 Open the Cloud9 terminal.
-If you are using AWS Event Engine navigate to the folder named **AWS_Workshop_Code_Eventengine/Working_Directory/Resources**
+If you are using AWS Event Engine navigate to the folder named **secure-firewall/AWS_Workshop/AWS_Workshop_Code_EventEngine/Working_Directory**
 
-If you are using AWS Account navigate to the folder named **AWS_Workshop_Code/Working_Directory/Resources**
+If you are using AWS Account navigate to the folder named 
+**secure-firewall/AWS_Workshop/AWS_Workshop_Code/Working_Directory**
 
-Create a new folder inside Working_Directory named Development
+Create a new folder inside Working_Directory named **Development**
+
+```console
+cd ./secure-firewall/AWS_Workshop/AWS_Workshop_Code/Working_Directory
+mkdir Development
+```
 
 Copy **providers.tf**, **networks.tf**, **variables.tf**, **terraform.tfvars** files from the Resources folder to the Development folder.
 
-1. **<ins>Enter values for Terraform variables</ins>**
-   - provide the 'aws_access_key' and 'aws_secret_key' of your user.
-   - provide the name of the key created in previous section
-   - Rest of the variables have been provided with a value already, however if you wish you can modify those values
+1. Overview of thge **terraform.tfvars** file:
+   - provide 'aws_access_key' of your user.
+   - provide the 'aws_secret_key' of your user.
+   - Change the region as per the region where you plan to deploy the resources.
 
-And then run the following set of commands inside the Development folder.
+![provider](/static/images/setup_network_resources/provider_var.png)
+
+   - This section will use the same VPC that was created in the getting started section so **vpc_name** variable has the value **IAC-VPC** and variable **vpc_cidr** is empty as its not required.
+   - provide the name of EC2 keypair that you created in the getting started section to the variable **keyname** 
+   - Rest of the variables have been provided with a value already and require no change for this lab, however if you wish you can modify those values.
+
+![keyname](/static/images/setup_network_resources/keyname.png)
+
+**Note:** variable **create_igw** is set to false since the VPC created in the getting started section for deploying cloud9 will already have an Internet Gateway attached to it. If you plan to use a different VPC which does not already have an Internet Gateway attached, change the value of **create_igw** to true.
+
+
+If you are not inside the Development folder, navigate to the **Development folder** And then run the following set of commands inside folder.
 
 2. **<ins>terraform init</ins>**
 
