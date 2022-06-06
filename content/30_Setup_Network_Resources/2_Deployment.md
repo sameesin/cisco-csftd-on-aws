@@ -89,13 +89,13 @@ Open your AWS Management Console to see if all the resources are correctly deplo
 Search for your VPC in subnets and see all of them.
 <br>
 
-![subnets](/static/images/setup_network_resources/subnets.png)
+![subnets](/static/images/setup_network_resources/Subnets.png)
 
 **Security Groups**
-![Security Groups](/static/images/setup_network_resources/securitygroups.png)
+![Security Groups](/static/images/setup_network_resources/SecurityGroups.png)
 
 **Interfaces:** 
-![interfaces](/static/images/setup_network_resources/network_interfaces.png)
+![interfaces](/static/images/setup_network_resources/Network_interfaces.png)
 
 **Route Tables:** 
 ![routes_tables](/static/images/setup_network_resources/routetables.png)
