@@ -30,13 +30,3 @@ eg:
 6. Choose **AWS Console**, then **Open AWS Console**.
 
 This account will expire at the end of the workshop and the all the resources created will be automatically deprovisioned. You will not be able to access this account after today.
-
-## Region selection
-
-Use a single region for the duration of this workshop. This workshop supports the following regions:
-
-- us-east-1 (US East - N. Virginia)
-
-Please select `US East 1  - N. VirginiA` in the top right corner.
-
-![Step 3](/static/images/getting_started/c9-step3.png)

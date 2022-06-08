@@ -28,5 +28,8 @@ Click on Delete
 
 ![cloud9_delete](/static/images/clean_up/cloud9_delete.png)
 
-::alert[Resources like VPC and KeyPair that were created manually, needs to be destoryed in a similar manner via the AWS console.]
+**<ins>Delete VPC</ins>**
 
+Navigate to Amazon VPC console
+
+Delete the IaC VPC
