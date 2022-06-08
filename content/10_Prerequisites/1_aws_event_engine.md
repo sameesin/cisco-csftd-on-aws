@@ -19,7 +19,15 @@ eg:
 
 ![Step 2](/static/images/getting_started/c9-step2.png)
 
-3. Choose **AWS Console**, then **Open AWS Console**.
+3. Please note the region that the event is using as resources can only be provisioned in the specified region.
+
+4. Click the ‘Open AWS Console’ button to open the AWS Console. You can also copy and paste the credentials through the ‘Copy Login Link’ into your terminal window if you need to use the AWS CLI
+
+5. Set up your environment using the instructions in the Credentials/CLI Snippets section depending on your platform (Mac/Linux or Windows)
+
+![Step 5](/static/images/cloud9-eks-prereqs/eeawsconsolelogin.png)
+
+6. Choose **AWS Console**, then **Open AWS Console**.
 
 This account will expire at the end of the workshop and the all the resources created will be automatically deprovisioned. You will not be able to access this account after today.
 

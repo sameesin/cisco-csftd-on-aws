@@ -21,7 +21,10 @@ mkdir Development
 
 Copy **providers.tf**, **networks.tf**, **variables.tf**, **terraform.tfvars** files from the Resources folder to the Development folder.
 
-1. Overview of thge **terraform.tfvars** file:
+1. Overview of the **terraform.tfvars** file:
+
+::alert[If you are using the Event Engine, please use the credentials you copied in the [AWS Event Engine](/10_prerequisites/1_aws_event_engine.md)]
+
    - provide 'aws_access_key' of your user.
    - provide the 'aws_secret_key' of your user.
    - Change the region as per the region where you plan to deploy the resources.

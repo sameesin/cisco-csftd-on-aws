@@ -38,9 +38,9 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 
 ![Step 5](/static/images/getting_started/c9-step6-b.png)
 
-![Step 5](/static/images/getting_started/vpc-1.png)
+![Step 5](/static/images/getting_started/VPC-1.png)
 
-![Step 5](/static/images/getting_started/vpc-2.png)
+![Step 5](/static/images/getting_started/VPC-2.png)
 - Back in the cloud9 settings page, select the created VPC and the created subnet 
 - Leave all other defaults unchanged.
 

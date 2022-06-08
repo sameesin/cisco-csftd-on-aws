@@ -11,3 +11,5 @@ weight: 3
 3. Click on Continue to Subscribe
 4. Navigate to [Cisco Firepower Management Center (FMCv) BYOL](https://aws.amazon.com/marketplace/pp/prodview-nokd5afymp54q?sr=0-3&ref_=beagle&applicationId=AWSMPContessa)
 5. Click on Continue to Subscribe
+
+::alert[By default, you are entitled to a 30-day free trial for both NGFWv and FMCv when you subscribe to the BYOL listing.]
