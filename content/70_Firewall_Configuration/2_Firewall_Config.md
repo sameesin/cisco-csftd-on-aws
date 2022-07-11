@@ -254,6 +254,8 @@ Use **fmcapi.PolicyAssignments** and pass the name of FTD and NAT Policy to conn
 
 ## <ins>Running the Script</ins>
 
+### Note: Run the fmc.py script only after the FMC and FTD devices are up and running and FMC is ready to onboard devices. This can require a wait of 20-30 minutes.
+
 Open the terminal and *cd* into the folder which has your python script **fmc.py** in it.
 
 Run the python script using the command.

@@ -15,7 +15,7 @@ Here is the data source to fetch private ami id of fmc:
 ```
 data "aws_ami" "fmcv" {
 
-  owners      = ["self"]
+  owners      = ["<owner account id"]
   filter {
     name   = "name"
     values = ["${var.FMC_version}*"]
@@ -76,7 +76,7 @@ Here is the code snippet that fetches the private ami to create ftd:
 ```
 data "aws_ami" "ftdv" {
 
-  owners      = ["self"]
+  owners      = ["<owner account id>"]
 
  filter {
     name   = "name"
