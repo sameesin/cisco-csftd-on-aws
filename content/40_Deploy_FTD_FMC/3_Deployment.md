@@ -15,6 +15,14 @@ Navigate to the Cloud9 terminal and copy **instances.tf** file from the Resource
 
 >Note: We will deploy ```2``` FTDs and ```1``` FMC instances
 
+
+## When using Event Engine for this lab follow the below steps
+
+- Navigate to the modules/FirewallServer/data.tf file inside AWS_Workshop_Code_event_engine folder.
+
+- replace the < owner account id > with the AMI owner account ID. To ge this ID on the AWS console, select EC2 Service, under image section click on AMIs.
+Select private images. Select one of the image, copy the Owner account ID under details 
+
 And then run the following set of commands.
 
 1. **<ins>terraform init</ins>**

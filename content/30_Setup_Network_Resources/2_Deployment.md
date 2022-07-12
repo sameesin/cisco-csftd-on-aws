@@ -27,6 +27,7 @@ Copy **providers.tf**, **networks.tf**, **variables.tf**, **terraform.tfvars** f
 
    - provide 'aws_access_key' of your user.
    - provide the 'aws_secret_key' of your user.
+   - If you are using event engine, provide the 'session token' of your user
    - Change the region as per the region where you plan to deploy the resources.
 
 ![provider](/static/images/setup_network_resources/provider_var.png)

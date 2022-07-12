@@ -14,7 +14,7 @@ This document also consists of **USER Data** of both **application & bastion ser
 
 ```console
 resource "aws_instance" "bastion_machine" {
-  ami           = "ami-055d15d9cfddf7bd3" 
+  ami           = "<Ubuntu AMI ID for the region>"  
   instance_type = "t2.micro"
   key_name      = var.keyname
   network_interface {
@@ -71,7 +71,7 @@ resource "aws_route" "bastion_default_route" {
 ```console
 resource "aws_instance" "Application_server" {
   count         = 2
-  ami           = "ami-055d15d9cfddf7bd3" 
+  ami           = "<Ubuntu AMI ID for the region>" 
   instance_type = "t2.micro"
   key_name      = var.keyname
 

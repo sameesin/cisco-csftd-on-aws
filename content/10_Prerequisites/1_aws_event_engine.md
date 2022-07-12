@@ -21,7 +21,7 @@ eg:
 
 3. Please note the region that the event is using as resources can only be provisioned in the specified region.
 
-4. Click the ‘Open AWS Console’ button to open the AWS Console. You can also copy and paste the credentials through the ‘Copy Login Link’ into your terminal window if you need to use the AWS CLI
+4. Click the ‘Open AWS Console’ button to open the AWS Console. Copy and paste the credentials through the ‘Copy Login Link’ into your terminal window as they will be needed in the following steps.
 
 5. Set up your environment using the instructions in the Credentials/CLI Snippets section depending on your platform (Mac/Linux or Windows)
 
