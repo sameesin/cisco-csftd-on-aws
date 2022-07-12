@@ -20,6 +20,12 @@ Navigate to the Cloud9 terminal and copy **bastion.tf**, **bastion_install.tpl**
   cd ./Development
 ``` 
 
+### When using Event Engine for this lab follow the below steps
+
+- Open the bastion.tf file
+- Obtain the AMI ID for an ubuntu machine in your region
+- Add that ID in the aws_instance resource
+
 Run the following set of commands.
 
 1. **<ins>terraform init</ins>**

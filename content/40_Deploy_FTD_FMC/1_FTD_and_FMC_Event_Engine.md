@@ -15,7 +15,7 @@ Here is the data source to fetch private ami id of fmc:
 ```
 data "aws_ami" "fmcv" {
 
-  owners      = ["<owner account id"]
+  owners      = ["<owner account id>"]
   filter {
     name   = "name"
     values = ["${var.FMC_version}*"]
