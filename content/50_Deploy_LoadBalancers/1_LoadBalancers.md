@@ -26,7 +26,7 @@ resource "aws_lb" "external-lb" {
 2. Enabling cross zone load balancing is crucial to make sure that requests are evenly split between all the availability zones used. 
 3. Set the internal attribute to false for the internet facing load balancer. 
    
-  ![load_balancers](/static/images/deploy_loadbalancers/lb.jpeg) 
+  ![load_balancers](/static/Images/deploy_loadbalancers/lb.jpeg) 
 
 Following are the variables created to set port and protocol on which the load balancer will listen to and use for checking health status of tartget instances
 
@@ -64,7 +64,7 @@ resource "aws_lb_target_group" "external_front_end" {
   }
 }
 ```    
-  ![target_groups](/static/images/deploy_loadbalancers/target_groups.jpeg) 
+  ![target_groups](/static/Images/deploy_loadbalancers/target_groups.jpeg) 
   
 --> We can change the attributes of ```heath_check ```attachment as per specific needs.
 

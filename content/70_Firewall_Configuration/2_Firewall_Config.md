@@ -365,12 +365,12 @@ To ensure that everything took place as per your requirment open the FMC-UI on y
 
 For eg: 
 1. **ACP:**
-![fmcapi_policy](/static/images/firewall_configuration/FMCAPI_POLICY.png) 
+![fmcapi_policy](/static/Images/firewall_configuration/FMCAPI_POLICY.png) 
 
 It also shows that this was created using fmcapi
 
 2. **Devices:**
-![device](/static/images/firewall_configuration/FMC_DEVICE_SCR.png)
+![device](/static/Images/firewall_configuration/FMC_DEVICE_SCR.png)
 
 Check the policy name attached to the FTD.
 

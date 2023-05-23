@@ -13,11 +13,11 @@ eg:
 
 1. Go to https://dashboard.eventengine.run to log into AWS Event Engine.
 
-![Step 1](../static/images/getting_started/c9-step1.png)
+![Step 1](../static/Images/getting_started/c9-step1.png)
 
 2. Enter your unique 12-digit hash code and choose *Accept Terms & Login*.
 
-![Step 2](../static/images/getting_started/c9-step2.png)
+![Step 2](../static/Images/getting_started/c9-step2.png)
 
 3. Choose **AWS Console**, then **Open AWS Console**.
 
@@ -31,4 +31,4 @@ Use a single region for the duration of this workshop. This workshop supports th
 
 Please select `US West 1` in the top right corner.
 
-![Step 3](../static/images/getting_started/c9-step3.png)
+![Step 3](../static/Images/getting_started/c9-step3.png)

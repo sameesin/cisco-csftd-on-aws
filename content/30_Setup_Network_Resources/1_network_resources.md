@@ -19,7 +19,7 @@ In this section we are creating all the required network resources for creating 
 
    Open aws console to check if the VPC is up and running
 
-![Created subnets](/static/images/setup_network_resources/vpc.jpeg)  
+![Created subnets](/static/Images/setup_network_resources/vpc.jpeg)  
 
 
 
@@ -188,7 +188,7 @@ resource "aws_internet_gateway" "int_gw" {
   }
 }
 ```
- ![internet_gateway](/static/images/setup_network_resources/igw.jpeg)   
+ ![internet_gateway](/static/Images/setup_network_resources/igw.jpeg)   
  <br>
 
 Now to create route tables and routes, we will use **aws_route_table** terraform resource.

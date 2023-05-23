@@ -17,7 +17,7 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 
 1. From the AWS Management Console, Select **Services** then select **Cloud9** under Developer Tools. 
 
-![Step 4](/static/images/getting_started/c9-step4.png)
+![Step 4](/static/Images/getting_started/c9-step4.png)
 
 2. Select **Create environment**.
 
@@ -25,7 +25,7 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 
 4. Select the Environment type as New EC2 Instance
 
-![Step 5](/static/images/getting_started/c9-step5_new.png)
+![Step 5](/static/Images/getting_started/c9-step5_new.png)
 
 5. Under New EC2 Instance Set the *Instance type* to **t2.micro (1 GiB RAM + 1 vCPU)**. Other settings can be left with default values
 
@@ -38,7 +38,7 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 - Back in the cloud9 settings page, select the created VPC and the created subnet 
 - Leave all other defaults unchanged.
 
-![Step 6](/static/images/getting_started/c9-step6-b.png)
+![Step 6](/static/Images/getting_started/c9-step6-b.png)
 
 7. Click on Create.<br>
 It will take a couple of minutes for your Cloud9 environment to be provisioned and prepared.
@@ -47,9 +47,9 @@ It will take a couple of minutes for your Cloud9 environment to be provisioned a
 
 1. Once ready, click on the open option. your IDE will open to a welcome screen. Below that, you should see a terminal prompt. Close the Welcome tab and drag up the terminal window to give yourself more space to work in. 
 
-![Step 6a](/static/images/getting_started/c9-step6a.png)
+![Step 6a](/static/Images/getting_started/c9-step6a.png)
 
-![Step 7](/static/images/getting_started/c9-step7.png)
+![Step 7](/static/Images/getting_started/c9-step7.png)
 
 - You can run AWS CLI commands in here just like you would on your local computer. Remember for this workshop to run all commands within the Cloud9 terminal window rather than on your local computer.
 - Keep your AWS Cloud9 IDE opened in a browser tab throughout this workshop.
@@ -101,7 +101,7 @@ To create a key pair go to AWS Management console, EC2 > Network & Security > Ke
 
 >Note: KeyPair will be helpful in the scenario where we need to access an instance via SSH
 
-![key_pair](/static/images/getting_started/KEY-PAIR.png)
+![key_pair](/static/Images/getting_started/KEY-PAIR.png)
 
 ### Tips
 
@@ -115,4 +115,4 @@ Keep an open scratch pad in Cloud9 or a text editor on your local computer for n
 
 - Keep your [AWS Cloud9 IDE](#aws-cloud9-ide) opened in a browser tab
 
->Note: Click [here](../20_Getting_Started/2_Subscribe_to_FMC_and_FTD_images.md) if you are using a personal account to subscribe to Cisco FTD and FMC images.
+>Note: Click [here](../20_Getting_Started/2_Subscribe_to_FMC_and_FTD_images.md) if you are using a personal account to subscribe to Cisco FTD and FMC Images.
