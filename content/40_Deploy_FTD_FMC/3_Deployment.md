@@ -6,7 +6,7 @@ weight: 3
 ### STEPS
 Aim is to deploy Cisco Secure FTDv and FMCv instances on AWS through Terraform. 
 
-Navigate to the Cloud9 terminal and copy **instances.tf** file from the Resources folder to the Development folder.
+Navigate to the Cloud9 terminal and copy **instances.tf** file from the Resources folder to the Development folder. Then navigate to the Development folder
 
 ```console
   cp ./Resources/instances.tf ./Development/instances.tf

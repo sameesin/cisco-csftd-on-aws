@@ -64,6 +64,8 @@ Open the AWS console to see bastion server in the EC2 Instance.
 Bastion:
 ![bastion](/static//images/deploy_test_machines/bastion_instance.jpeg)  
 
+Wait for the bastion server to be up and ready before running the following commands.
+
 ## <ins>**Application Server**:</ins>
 Navigate to the Cloud9 terminal and copy **apps.tf**, **apache_install.tpl** files from the Resources folder to the Development folder.
 

@@ -9,7 +9,7 @@ weight: 10
 
 **<ins>terrafrom destroy</ins>**
   
-To destroy the whole configuration, cd into the folder from where you deployed the plan and then   
+To destroy the whole configuration, cd into the folder from where you deployed the AWS resources plan (Development folder) and then  
 - Run *terraform destroy* to terminate and delete all the resources created.
 
 ```console

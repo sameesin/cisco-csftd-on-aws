@@ -9,7 +9,6 @@ Load balancer is a key component of the network. It distributes all the incoming
 In this workshop we will create.  
 
 * External Load balancer     - **```1```** 
-* Internal Load balancer     - **```1```** 
 
 ***aws_lb*** terraform resource will be used to create the load balancer.  
 

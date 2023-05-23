@@ -27,8 +27,8 @@ This account will expire at the end of the workshop and the all the resources cr
 
 Use a single region for the duration of this workshop. This workshop supports the following regions:
 
-- us-east-1 (US East - N. Virginia)
+- us-west-1
 
-Please select `US East 1  - N. VirginiA` in the top right corner.
+Please select `US West 1` in the top right corner.
 
 ![Step 3](/static/images/getting_started/c9-step3.png)

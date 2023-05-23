@@ -19,16 +19,13 @@ In this lab we will make use of **Cisco FMC REST API** and **python** to program
 8. Associate NAT Policy with FTD
 
 ---
-**Note: There are two ways to set up an FMC:**
+**Note: There are ways to set up an FMC:**
 * Using FMC UI
 * Using python script utilizing the **fmcpi** python module
+* Using Terraform Provider for FMC
 
->We will be using python script for this lab
- 
+>We will be using Terraform Provider FMC for this lab
 
-### <ins>Step 0:  Install required module</ins>
-
-Navigate to the cloud9 terminal and install fmcapi module with command ```pip3 install fmcapi```
 
 ### <ins>Step 1:  Obtain ILB Private IP Addresses using AWS CLI</ins>
 
@@ -45,231 +42,324 @@ aws ec2 describe-network-interfaces --filters Name=description,Values="ELB <ELB 
 
 This will give you all the private IPs of ILB, enter them when prompted. 
 
+Update the terraform.tfvars file with the ELB Private IP address.
+
 ### <ins> Step 2: Tapping in FMC </ins>
 
-```python
-def main():
-    with fmcapi.FMC(
-        host=fmc_host_ip, 
-        username=fmc_host_username,
-        password=fmc_host_password, 
-        autodeploy=False,
-        file_logging='test.txt') as fmc:
 ```
-This creates an instance of FMC class, we need to provide the *public ip, username, password*  of FMC.
-Logs can be also be maintained in a .txt file by passing it as an argument.
+terraform {
+  required_providers {
+    fmc = {
+      source = "CiscoDevNet/fmc"
+    }
+  }
+}
 
->NOTE: The whole code from this point is also inside the class **main()** and on the same identation level.
+provider "fmc" {
+  fmc_username = "admin"
+  fmc_password = var.fmc_admin_password
+  fmc_host = var.fmc_ip
+  fmc_insecure_skip_verify = var.fmc_insecure_skip_verify
+}
+```
 
 ### <ins> Step 3: Creating Access Control Policy </ins>
-```python
-acp = fmcapi.AccessPolicies(fmc=fmc, name= "IAC_ACP")
-acp.defaultAction = "BLOCK"
-acp.post()
+
+**fmc_access_policies** resource is used to create an ACP, pass the the name of policy to deploy it and choose the default action that ACP must take, out of *Block all traffic, Intrusion Prevention & Network Discovery.
+
 ```
-
-**fmcapi.AccessPolicies** is used to create an ACP, pass the FMC instance and the name of policy to deploy it.
-
-Choose the default action that ACP must take out of *Block all traffic, Intrusion Prevention & Network Discovery.
-
-Writing **acp.post()** deploys this configuration
+resource "fmc_access_policies" "access_policy" {
+  name = "IAC-ACP"
+  default_action = "BLOCK"
+  default_action_send_events_to_fmc = "true"
+  default_action_log_end = "true"
+}
+```
 
 ### <ins> Step 4: Adding Security Zones</ins>
 
-```python
-sz_inside = fmcapi.SecurityZones(fmc=fmc, name="inside", interfaceMode="ROUTED")
-sz_inside.post()
-sz_outside = fmcapi.SecurityZones(fmc=fmc, name="outside", interfaceMode="ROUTED")
-sz_outside.post()
+Following security zones are created on FMC
+- inside
+- outside
+
+**fmc_security_zone** resource is used to create two security zones. **Inside** and **Outside** SZs are created here with their interface mode set to *routed*.
+
+```
+resource "fmc_security_zone" "inside" {
+  name            = "inside"
+  interface_mode  = "ROUTED"
+}
+resource "fmc_security_zone" "outside" {
+  name            = "outside"
+  interface_mode  = "ROUTED"
+}
 ```
 
-Use **fmcapi.SecurityZones** to create two(or more) security zones. **Inside** and **Outside** SZs are created here with their interface mode set to *routed*.
 
 ### <ins> Step 5: Adding Hosts & Network Objects </ins>
 
-```python
-#Gateway Host Object
-dfgw_gateway = fmcapi.Hosts(fmc=fmc, name="default-gateway", value="10.0.2.1")
-dfgw_gateway.post()
+Following host objects will be created on FMC:
+- inside-gateway - `1` per AZ (inside subnet gateway)
+- default-gateway - `1` per AZ (outside subnet gateway)
+- ELB - `1` per AZ (private IP address of public LB)
+- app-lb - `1` per AZ (IP address of internal lb)
 
-#Inside Gateway1 Host Object
-inside_gateway1 = fmcapi.Hosts(fmc=fmc, name="inside-gateway1", value="10.0.3.1")
-inside_gateway1.post()
-        
-#Inside Gateway2 Host Object
-inside_gateway2 = fmcapi.Hosts(fmc=fmc, name="inside-gateway2", value="10.0.30.1")
-inside_gateway2.post()
+Following network object is created on FMC:
+APP - `1` per AZ (application instance subnet)
 
-#ELB interface 1 IP
-elb1 = fmcapi.Hosts(fmc=fmc, name="ELB1", value=elb_1)
-elb1.post()
+Following is an example of how the terraform code will look like.
 
-#ELB interface 2 IP
-elb2 = fmcapi.Hosts(fmc=fmc, name="ELB2", value=elb_2)
-elb2.post() 
-
-#APP1 Network Object
-app1 = fmcapi.Networks(fmc=fmc, name="app15", value=app1_cidr)
-app1.post()
-        
-#APP2 Network Object
-app2 = fmcapi.Networks(fmc=fmc, name="app25", value=app2_cidr)
-app2.post()
-
-#APP LB IP Address 1
-app_lb1 = fmcapi.Hosts(fmc=fmc, name="app-lb15", value=app1_lb_ip)
-app_lb1.post()
-
-#APP LB IP Address 2
-app_lb2 = fmcapi.Hosts(fmc=fmc, name="app-lb25", value=app2_lb_ip)
-app_lb2.post()
 ```
-* Provide an IP address for Internet Gateway, ensuring that it belongs to the outside_subnet.
-* Priavte IPs that were obtained from Step 1 will be passed here in elb_1 & elb_2.
-* Choose the CIDR which is used by your application server.
-* Add the IP address of the loadbalancer attached to the application server. The IP address added must resonate with the CIDR of the webserver.
+resource "fmc_host_objects" "APP-LB" {
+  count = 2
+  name        = "app-lb${count.index+1}"
+  value       = var.app_lb[count.index]
+}
+
+resource "fmc_network_objects" "APP" {
+  count = 2
+  name        = "APP${count.index+1}"
+  value       = var.ftd_app_ip[count.index]
+}
+```
+
 
 ### <ins>Step 6: Creating ACP rules</ins>
 
 The code below creates a rule to allows all outside traffic to the webserver.
 
-ACP rules is a subset of ACP.
+**fmc_access_rules** resource is used to add source & destination zones and the destination network to make up the rule. 
 
-```python
-acprule = fmcapi.AccessRules(fmc=fmc,acp_name=acp.name,name="To Web Server5",action="ALLOW",enabled=True)
-acprule.source_zone(action="add", name=sz_outside.name)
-acprule.destination_zone(action="add", name=sz_inside.name)
-acprule.destination_network(action="add", name=app_lb1.name)
-acprule.destination_network(action="add", name=app_lb2.name)
-acprule.logEnd = False
-acprule.post()
+We provide the name of security zones and name of the Load Balancer for the web server where needed. set *action=allow* to add the respective fields.
+
+Access rule is a subset of ACP.
+
 ```
-Using **fmcapi.AccessRules** we add source & destination zones and the destination network to make up the rule. 
+resource "fmc_access_rules" "access_rule_1" {
+    acp = fmc_access_policies.access_policy.id
+    section = "mandatory"
+    name = "To Web Server"
+    action = "allow"
+    enabled = true
+    send_events_to_fmc = true
+    log_end = true
+    source_zones {
+        source_zone {
+            id = fmc_security_zone.outside.id
+            type = "SecurityZone"
+        }
+    }
+    destination_zones {
+        destination_zone {
+            id = fmc_security_zone.inside.id
+            type = "SecurityZone"
+        }
+    }
+    destination_networks {
+        destination_network {
+            id = fmc_host_objects.APP-LB[0].id
+            type =  fmc_host_objects.APP-LB[0].type
+        }
+        destination_network {
+            id = fmc_host_objects.APP-LB[1].id
+            type =  fmc_host_objects.APP-LB[1].type
+        }
+    }
+    new_comments = [ "Traffic to Web Server" ]
+}
+```
 
-We provide the name of security zones and name of the Load Balancer where needed, set *action=add* to add the respective fields.
 
 ### <ins> Step 7: Adding Static NAT</ins>
 
-```python
-nat = fmcapi.FTDNatPolicies(fmc=fmc, name="NAT Policy5")
-nat.post()
-#NAT Rule 1
-manualnat1 = fmcapi.ManualNatRules(fmc=fmc)
-manualnat1.natType = "STATIC"
-manualnat1.original_source(elb1.name)
-manualnat1.original_destination_port("HTTP")
-manualnat1.translated_destination_port("HTTP")
-manualnat1.translated_destination(app_lb1.name)
-manualnat1.interfaceInOriginalDestination = True
-manualnat1.interfaceInTranslatedSource = True
-manualnat1.source_intf(name=sz_outside.name)
-manualnat1.destination_intf(name=sz_inside.name)
-manualnat1.nat_policy(name=nat.name)
-manualnat1.enabled = True
-manualnat1.post()
+NAT rule is created to translate source IP address from external load balancer IP address to Inside interface IP address and destination IP address from outside interface IP address to Internal load balancer IP address.
+
+`fmc_ftd_nat_policies` and `fmc_ftd_manualnat_rules` resources are used to create the NAT policy and NAT rules.
+
+
+```
+resource "fmc_ftd_nat_policies" "nat_policy" {
+    count = 2
+    name = "NAT_Policy${count.index}"
+    description = "Nat policy by terraform"
+}
+
+resource "fmc_ftd_manualnat_rules" "new_rule1" {
+    count = 2
+    nat_policy = fmc_ftd_nat_policies.nat_policy[count.index].id
+    nat_type = "static"
+    original_source{
+        id = fmc_host_objects.ELB[0].id
+        type = fmc_host_objects.ELB[0].type
+    }
+    source_interface {
+        id = fmc_security_zone.outside.id
+        type = "SecurityZone"
+    }
+    destination_interface {
+        id = fmc_security_zone.inside.id
+        type = "SecurityZone"
+    }
+    original_destination_port {
+        id = data.fmc_port_objects.http.id
+        type = data.fmc_port_objects.http.type
+    }
+    translated_destination_port {
+        id = data.fmc_port_objects.http.id
+        type = data.fmc_port_objects.http.type
+    }
+    translated_destination {
+        id = fmc_host_objects.APP-LB[0].id
+        type = fmc_host_objects.APP-LB[0].type
+    }
+    interface_in_original_destination = true
+    interface_in_translated_source = true
+}
 ```
 
-The NAT Rule above is for only one application server. 2nd NAT Rule will be the same with ```original_source``` as "elb2.name" & ```translated_destination``` as "app_lb1.name" 
+The NAT Rule above is for only one application server. 2nd NAT Rule will be the same with ```original_source``` as "ELB[1]" & ```translated_destination``` as "APP-LB[1]" 
 
 
-### <ins> Step 8: Adding FTD as a device </ins>
+### <ins> Step 8: Register FTD to FMC </ins>
 
-```python
-#Register 1st FTD
-ftd1 = fmcapi.DeviceRecords(fmc=fmc)
-ftd1.hostName = host1_ip
-ftd1.regKey = reg_key
-ftd1.acp(name="IAC-ACP")
-ftd1.name = "ftd1"
-ftd1.licensing(action="add", name="BASE")
-ftd1.post(post_wait_time=300)
-        
-#Register 2nd FTD
-ftd2 = fmcapi.DeviceRecords(fmc=fmc)
-ftd2.hostName = host2_ip
-ftd2.regKey = reg_key
-ftd2.acp(name="IAC-ACP5")
-ftd2.name = "ftd2"
-ftd2.licensing(action="add", name="BASE")
-ftd2.post(post_wait_time=300)
-```
+`fmc_devices` resource is used to register FTD devices to FMC.
+
 1. Provide the IP address of your deployed FTD for hostName field. Can be found in the AWS EC2 console.
-2. Provide the same registration key used to create the FTD, make sure that this key must not have any special characters apart from '-'. 
+2. Provide the same registration key used while creating the FTD, make sure that this key must not have any special characters apart from '-'. 
 3. Attach the ACP to the FTD .
-4. **post_wait_time** takes values in seconds and will wait for that amount of time until the FTD is added.  
-
-For interfaces of FTD the code snippet will be:
-```python
-#Interface of FTD-1
-ftd1_g00 = fmcapi.PhysicalInterfaces(fmc=fmc, device_name=ftd1.name)
-ftd1_g00.get(name="TenGigabitEthernet0/0")
-ftd1_g00.enabled = True
-ftd1_g00.ifname = "outside"
-ftd1_g00.dhcp(True, 1)
-ftd1_g00.sz(name="outside")
-ftd1_g00.put(put_wait_time=3)
-ftd1_g01 = fmcapi.PhysicalInterfaces(fmc=fmc, device_name=ftd1.name)
-ftd1_g01.get(name="TenGigabitEthernet0/1")
-ftd1_g01.enabled = True
-ftd1_g01.ifname = "inside"
-ftd1_g01.dhcp(False, 1)
-ftd1_g01.sz(name="inside")
-ftd1_g01.put(put_wait_time=3)
-```
-
-### <ins> Step 9: Adding static routes on FTD to Webserver </ins>
-
-Adding a static default route for FTD
-```python
-#static route - ftd1
-web_route1 = fmcapi.IPv4StaticRoutes(fmc=fmc, name="app_route1")
-web_route1.device(device_name=ftd1.name)
-web_route1.networks(action="add", networks=["app1"])
-web_route1.gw(name=inside_gateway1.name)
-web_route1.interfaceName = ftd1_g00.ifname
-web_route1.metricValue = 1
-web_route1.post(post_wait_time=3)
 
 ```
-All static routes can be created using **fmcapi.IPv4StaticRoutes** (also exists for FTD2).  
+resource "fmc_devices" "device1"{
+  depends_on = [fmc_ftd_nat_policies.nat_policy, fmc_security_zone.inside, fmc_security_zone.outside]
+  name = "FTD1"
+  hostname = var.ftd_mgmt_ip[0]
+  regkey = "cisco"
+  type = "Device"
+  #license_caps = [ "MALWARE"]
+  #nat_id = "cisco"
+  access_policy {
+      id = fmc_access_policies.access_policy.id
+      type = fmc_access_policies.access_policy.type
+  }
+}
+```
+The same needs to be done for FTD2
+ 
+### <ins> Step 9: Physical Interfaces </ins>
 
-### <ins> Step 10: Associate NAT policy with FTD. </ins>
+2 interfaces with logical name `inside` and `outside` will be created on FTD using `fmc_device_physical_interfaces` resource.
 
-```python
-# Associate NAT policy 1 with ftd1.
-devices = [{"name": ftd1.name, "type": "device"}]
-assign_nat_policy1 = fmcapi.PolicyAssignments(fmc=fmc)
-assign_nat_policy1.ftd_natpolicy(name=nat1.name, devices=devices)
-assign_nat_policy1.post(post_wait_time=3)
-        
-# Associate NAT policy 2 with ftd2.
-devices = [{"name": ftd2.name, "type": "device"}]
-assign_nat_policy2 = fmcapi.PolicyAssignments(fmc=fmc)
-assign_nat_policy2.ftd_natpolicy(name=nat2.name, devices=devices)
-assign_nat_policy2.post(post_wait_time=3)
+Following is example of creating `outside` interface on both the FTDs 
+```
+data "fmc_devices" "device" {
+  depends_on = [fmc_devices.device2]
+  count = 2
+  name = "FTD${count.index+1}"
+}
+
+data "fmc_device_physical_interfaces" "zero_physical_interface" {
+    count = 2
+    device_id = data.fmc_devices.device[count.index].id
+    name = "TenGigabitEthernet0/0"
+}
+
+resource "fmc_device_physical_interfaces" "physical_interfaces00" {
+    count = 2
+    enabled = true
+    device_id = data.fmc_devices.device[count.index].id
+    physical_interface_id= data.fmc_device_physical_interfaces.zero_physical_interface[count.index].id
+    name =   data.fmc_device_physical_interfaces.zero_physical_interface[count.index].name
+    security_zone_id= fmc_security_zone.outside.id
+    if_name = "outside"
+    mode = "NONE"
+    ipv4_dhcp_enabled = true
+    ipv4_dhcp_route_metric = 1
+}
 ```
 
-Use **fmcapi.PolicyAssignments** and pass the name of FTD and NAT Policy to connect them together.
+### <ins> Step 10: Adding static routes on FTD to Webserver </ins>
 
-### <ins>Final step: Running the Script</ins>
+A static route will be created on FTD to webserver with next hop as inside gateway IP address.
+`fmc_staticIPv4_route` resource will be used to create the static route.
 
-Open the terminal and *cd* into the folder which has your python script in it.
-
-Run the python script using the command.
 ```
-python3 fmc.py --addr ADDR --username USERNAME --password PASSWORD --elb1 ELB1 --elb2 ELB2
+resource "fmc_staticIPv4_route" "route" {
+  depends_on = [data.fmc_devices.device, fmc_device_physical_interfaces.physical_interfaces00,fmc_device_physical_interfaces.physical_interfaces01]
+  count = 2
+  metric_value = 1
+  device_id  = data.fmc_devices.device[count.index].id
+  interface_name = "inside"
+  selected_networks {
+      id = fmc_network_objects.APP[count.index].id
+      type = fmc_network_objects.APP[count.index].type
+      name = fmc_network_objects.APP[count.index].name
+  }
+  gateway {
+    object {
+      id   = fmc_host_objects.inside-gw[count.index].id
+      type = fmc_host_objects.inside-gw[count.index].type
+      name = fmc_host_objects.inside-gw[count.index].name
+    }
+  }
+}
 ```
-replace ADDR, USERNAME, PASSWORD, ELB1 & ELB2 with respctive values.
 
+### <ins> Step 11: Associate NAT policy with FTD. </ins>
 
-ELB1 & ELB2 are the private IPs of your load balancers which can be obtained using the *Step-1 from firewall configuration module.*
+`fmc_policy_devices_assignments` resource is used to assign  the created NAT Policy to FTD instances.
 
+```
+resource "fmc_policy_devices_assignments" "policy_assignment" {
+  depends_on = [fmc_staticIPv4_route.route]
+  count = 2
+  policy {
+      id = fmc_ftd_nat_policies.nat_policy[count.index].id
+      type = fmc_ftd_nat_policies.nat_policy[count.index].type
+  }
+  target_devices {
+      id = data.fmc_devices.device[count.index].id
+      type = data.fmc_devices.device[count.index].type
+  }
+}
+```
+
+### <ins> Step 11: Deploy changes to FTD. </ins>
+
+`fmc_ftd_deploy` resource is used to deploy the changes made on FMC to the FTD devices.
+
+```
+resource "fmc_ftd_deploy" "ftd" {
+    depends_on = [fmc_policy_devices_assignments.policy_assignment]
+    count = 2
+    device = data.fmc_devices.device[count.index].id
+    ignore_warning = true
+    force_deploy = false
+}
+```
+
+### <ins>Final step: Running the Terraform code</ins>
+
+In cloud9 IDE navigate to static folder `AWS_Workshop_Code_EventEngine` and ensure following files are available.
+**fmc_config_terraform.tf**, **providers.tf**, **variables.tf** and **terraform.tfvars**
+
+Run the following commands:
+```
+terraform init
+```
+
+```
+terraform validate
+```
+
+```
+terraform plan --out awslab
+```
+
+```
+terraform apply awslab
+```
 
 >Note: FMC Script can take upto 10 min to properly execute based on the delay added in the code.
-
-A log file by the name of ```test.txt``` will be created in the same repository to examine the status.
-
-![logs](/static/Images/testing-traffic/FMC_TEXT_TXT.png) 
 
 To ensure that everything took place as per your requirment open the FMC-UI on your browser and check things there. 
 

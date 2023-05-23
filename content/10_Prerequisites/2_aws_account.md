@@ -7,7 +7,7 @@ weight: 2
 
 Your account must have the ability to create new IAM roles and scope other IAM permissions.
 
-If you already have an AWS account, and have IAM Administrator access, go to [cloud9](/20-getting-started/1-getting-started)
+If you already have an AWS account, and have IAM Administrator access, go to [cloud9](../20_Getting_Started/1_getting_started)
 
 ## <ins>**Create an account**</ins>
 

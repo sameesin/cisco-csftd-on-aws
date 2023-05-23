@@ -9,13 +9,14 @@ Aim is to deploy all the resources created on AWS through terraform.
 Open the Cloud9 terminal.
 If you are using AWS Event Engine navigate to the folder named **AWS_Workshop_Code_event_engine/Working_Directory/Resources**
 
-If you are using AWS Account navigate to the folder named **AWS_Workshop_Code_aws_account/Working_Directory/Resources**
+If you are using personal AWS Account, navigate to the folder named **AWS_Workshop_Code_aws_account/Working_Directory/Resources**
 
 Copy **providers.tf**, **networks.tf**, **variables.tf**, **terraform.tfvars** files from the Resources folder to the Development folder.
 
 1. **<ins>Enter values for Terraform variables</ins>**
-   - provide the 'aws_access_key' and 'aws_secret_key' of your user.
+   - provide the 'aws_access_key', 'aws_secret_key', 'session_token' of your user.
    - provide the name of the key created in previous section
+   - provide the FMC IP address
    - Rest of the variables have been provided with a value already, however if you wish you can modify those values
 
 And then run the following set of commands.

@@ -5,17 +5,17 @@ weight: 1
 
 ### Introduction
 
-Now in this section we are creating all the required network resources for creating our topology.Such as  
+In this section we are creating all the required network resources for creating our topology.Such as  
 1. Subnets  
 2. Interfaces
 3. Security groups
 4. Route tables  
 
- Since VPC is already up & running lets get started with our first resource that is **```Subnet```** 
+ Since VPC is already up & running (created in the cloud9 creation step) lets get started with our first resource that is **```Subnet```** 
 
  ## **1. <ins>VPC**</ins>   (Virtual private cloud)
    
-   We are going to use VPC ```IAC-VPC``` created in the previous section.
+   We are going to use VPC ```IAC-vpc``` created in the previous section.
 
    Open aws console to check if the VPC is up and running
 
@@ -23,7 +23,7 @@ Now in this section we are creating all the required network resources for creat
 
 
 
-<ins>***Code snippet to refer the VPC created in previous section***</ins>
+<ins>***Terraform Code snippet to refer the VPC created in previous section***</ins>
    
 ```
 data "aws_vpc" "ftd_vpc" {
@@ -45,7 +45,7 @@ In this workshop we are creating the following subnets.
 * Mgmt subnets        - **```2```** (one in each AZ)  
 * Diag subnets        - **```2```** (one in each AZ)
 
-><ins>**Note**</ins> : The following is the snippet to create just the outside subnet. This block must be created for each subnet mentioned above.
+><ins>**Note**</ins> : The following is the snippet to create just the outside subnet. This block is created for each subnet mentioned above.
 
 ```
 resource "aws_subnet" "outside_subnet" {
@@ -102,9 +102,11 @@ resource "aws_network_interface" "ftd_outside" {
 <br>
  In this workshop we are creating following two security groups.  
 
- * allow_all (allows all traffic)
- * default  (allows traffic according to the rules given)
-
+ * Outside interface SG
+ * Inside interface SG
+ * Mgmt interface SG
+ * FMC Mgmt interface SG
+ * No Access
   
 A security group can be heavily customized according to the needs of particular network, the example given below focuses on allowing everything for our **allow_all** SG.
 
@@ -112,29 +114,47 @@ A security group can be heavily customized according to the needs of particular 
 <ins>Code snippet </ins>:
 
 ```
-resource "aws_security_group" "allow_all" {
-  name        = "Allow All"
-  description = "Allow all traffic"
-  vpc_id      = aws_vpc.ftd_vpc.id
+rresource "aws_security_group" "outside_sg" {
+  name        = "Outside Interface SG"
+  vpc_id      = local.con
+
   dynamic "ingress" {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
-      description = null
-    }
-  }
-  dynamic "egress" {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      cidr_blocks = ["0.0.0.0/8"]
-      description = null
+    for_each = var.outside_interface_sg
+    content {
+      from_port   = lookup(ingress.value, "from_port", null)
+      to_port     = lookup(ingress.value, "to_port", null)
+      protocol    = lookup(ingress.value, "protocol", null)
+      cidr_blocks = lookup(ingress.value, "cidr_blocks", null)
+      description = lookup(ingress.value, "description", null)
     }
   }
 
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+}
 ```
-Setting CIDR to ```0.0.0.0/0``` will ensure that we all ips to connect with our server. Since we are only concerned with TCP connection thus we set the **from_port** & **to_port** attributes to port number 22 and set the protocol to TCP in the ingress.
+with values as below:
+```
+outside_interface_sg = [
+    {
+        from_port = 80
+        protocol = "TCP"
+        to_port = 80
+        cidr_blocks = ["10.0.2.0/24","10.0.20.0/24"]
+    },
+    {
+        from_port = 22
+        protocol = "TCP"
+        to_port = 22
+        cidr_blocks = ["10.0.2.0/24","10.0.20.0/24"]
+    }
+]
+
+```
 
 This kind of egress part will allow all external connections, it can  be changed if more restrictions are required.  
 
@@ -154,8 +174,9 @@ Simply pass the SG id and network interface id to complete the attachment.
 
 Route tables are important for VPC to keep a track of where the traffic from our subnets (or gateway) is directed to.
 
-First create an [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) for your VPC. Internet gateway is required for several reasons, without it the internet-routable traffic can't move. Gateway is also responisble to perform NAT on instances having public ip address.    
-  
+First create an [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) for your VPC. Internet gateway is required for several reasons such as traffic to an application from internet. 
+
+>Note: Internet gateway in this usecase is already created
 
 Code snippet to create internet gateway:
 

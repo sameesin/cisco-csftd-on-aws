@@ -35,13 +35,14 @@ Now deploy both the FTDs to complete the network topology.
 ![Deploy](/static/Images/testing-traffic/DEPLOY.png)
 
 ## <ins>**Step 3 :**</ins> Test connectivity
-After the deployment is complete go to your AWS console > EC2 > Load Balancer. 
+After the deployment is complete check on the AWS Console that the target group instances are in **healthy** state.<br>
+Go to your AWS console > EC2 > Load Balancer. 
 
 Find the ***external loadbalancer*** and look for it's DNS Name.
 
 ![DNS](/static/Images/testing-traffic/ELB-DNS.png)
 
-Copy the DNS name and paste it inside a new tab of your browser.
+Copy the DNS name and paste it on a new tab of your browser.
 
 ![APP_Server](/static/Images/testing-traffic/APP-SERVER.png)
 

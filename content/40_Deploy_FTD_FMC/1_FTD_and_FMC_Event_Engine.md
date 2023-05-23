@@ -11,10 +11,12 @@ weight: 1
 The code below is for creating one FMC in any one of the AZ which will host the 2 FTD instances. 
 The data source to fetch private ami id of fmc:  
 
+>Note: Enter the owner account ID found in the AMI owned image section.
+
 ```
 data "aws_ami" "fmcv" {
 
-  owners      = ["self"]
+  owners      = ["<owner account id>"]
   filter {
     name   = "name"
     values = ["${var.FMC_version}*"]
@@ -61,7 +63,7 @@ We pass the user data and the network interface specific to FMC. The fmc_startup
 ```
 #FMC
 {
-"AdminPassword": "Password@123!",
+"AdminPassword": "Cisco@123",
 "Hostname":      "FMC-01",
 }
 ``` 
@@ -70,12 +72,14 @@ We pass the user data and the network interface specific to FMC. The fmc_startup
 
 The code below is deploying two FTD instances, each in a different availability zone with different network interfaces like *outside*, *inside*, *diagnostic* and *management* attached to it.
 
+>Note: Enter the owner account ID found in the AMI owned image section.
+
 The data block to fetch private ami to create ftd:  
 
 ```
 data "aws_ami" "ftdv" {
 
-  owners      = ["self"]
+  owners      = ["<owner account id>"]
 
  filter {
     name   = "name"
