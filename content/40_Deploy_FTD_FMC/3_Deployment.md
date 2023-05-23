@@ -24,7 +24,7 @@ And then run the following set of commands.
    ``` 
    This will download & install all the necessary modules. 
 
-![init_fw](/static/images/deploy_ftd_fmc/INIT_FW.png)
+![init_fw](/static/Images/deploy_ftd_fmc/INIT_FW.png)
 
 2. **<ins>terraform validate**</ins>
 
