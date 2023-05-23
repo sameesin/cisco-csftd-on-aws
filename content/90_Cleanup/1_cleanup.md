@@ -16,6 +16,6 @@ To destroy the whole configuration, cd into the folder from where you deployed t
 terraform destroy
 ```
 
-![delete](/static/Images/clean_up/Destroy.png)
+![delete](/static/Images/clean_up/DESTROY.png)
 
 Resources like VPC and KeyPair, if created manually, needs to be destoryed in a similar manner via the console.
