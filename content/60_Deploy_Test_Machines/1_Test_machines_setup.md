@@ -1,5 +1,5 @@
 ---
-title: "Test Machines Setup - Description"
+title: "Test Machines Setup"
 weight: 1
 ---
 
@@ -12,9 +12,11 @@ This document also consists of **USER Data** of both **application & bastion ser
 
 ## <ins> **Deploying one Bastion server**</ins>
 
+Add the ami id of the ubuntu based on your region
+
 ```console
 resource "aws_instance" "bastion_machine" {
-  ami           = "<Ubuntu AMI ID for the region>"  
+  ami           = "ami-055d15d9cfddf7bd3" 
   instance_type = "t2.micro"
   key_name      = var.keyname
   network_interface {
@@ -64,14 +66,17 @@ resource "aws_route" "bastion_default_route" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = module.network.internet_gateway
 }
-``` 
+```
+
 
 ## <ins> **Deploying two Web servers**</ins>
+
+Add the ami id of the ubuntu based on your region
 
 ```console
 resource "aws_instance" "Application_server" {
   count         = 2
-  ami           = "<Ubuntu AMI ID for the region>" 
+  ami           = "ami-055d15d9cfddf7bd3" 
   instance_type = "t2.micro"
   key_name      = var.keyname
 
@@ -113,7 +118,7 @@ resource "aws_lb" "app-lb" {
   
 >Note: Listner, Target group & Target Group attachment also needs to created for **app-lb**
 
-**Creating Route table for web servers:**
+**Creating Route table for application server:**
 
 ```console
 resource "aws_route_table" "ftd_app_route" {
@@ -139,4 +144,3 @@ tar zxvf kd.tar.gz
 cd ./web
 sudo dpkg -i *.deb
 ```
-  

@@ -1,30 +1,29 @@
 ---
-title: "Network Resources - Description"
+title: "Setting up network resources"
 weight: 1
 ---
 
 ### Introduction
 
-Now in this section we are creating all the required network resources for creating our topology.Such as  
-1. Subnets
-2. Security Groups
-3. Network Interfaces
-4. Route tables
-5. Elastic IPs
+In this section we are creating all the required network resources for creating our topology.Such as  
+1. Subnets  
+2. Interfaces
+3. Security groups
+4. Route tables  
 
- Since VPC is already up & running lets get started with our first resource that is **```Subnet```** 
+ Since VPC is already up & running (created in the cloud9 creation step) lets get started with our first resource that is **```Subnet```** 
 
  ## **1. <ins>VPC**</ins>   (Virtual private cloud)
    
-   We are going to use VPC ```IAC-VPC``` created in the previous section.
+   We are going to use VPC ```IAC-vpc``` created in the previous section.
 
    Open aws console to check if the VPC is up and running
 
-![Created subnets](/static/images/setup_network_resources/vpc.jpeg)  
+![Created subnets](/static/Images/setup_network_resources/vpc.jpeg)  
 
 
 
-<ins>***Code snippet to refer the VPC created in previous section***</ins>
+<ins>***Terraform Code snippet to refer the VPC created in previous section***</ins>
    
 ```
 data "aws_vpc" "ftd_vpc" {
@@ -39,14 +38,14 @@ data "aws_vpc" "ftd_vpc" {
 
 ## **2. <ins>Subnets**</ins>
   
-In this lab we are creating the following subnets.  
+In this workshop we are creating the following subnets.  
 
 * Inside subnets      - **```2```** (one in each AZ)  
 * Outside subnets     - **```2```** (one in each AZ)  
 * Mgmt subnets        - **```2```** (one in each AZ)  
 * Diag subnets        - **```2```** (one in each AZ)
 
-><ins>**Note**</ins> : The following is the snippet to create just the outside subnet. This block must be created for each subnet mentioned above.
+><ins>**Note**</ins> : The following is the snippet to create just the outside subnet. This block is created for each subnet mentioned above.
 
 ```
 resource "aws_subnet" "outside_subnet" {
@@ -75,24 +74,9 @@ data "aws_availability_zones" "available" {}
 > **Note**: If needed, the value of just single availability zone can be passed like this: ```availability_zone = "ap-south-1a"```
 
 
-## **3. <ins>Security Groups** </ins>: 
-
-In this lab we are creating the following security groups which will be associated with the respective interfaces.
-
-| Name | Interface | Details | Ports |
-| ---- | --------- | ------- | ----- |
-| outside_sg | outside | Restrict traffic to outside interface only from External load balancer subnet | SSH, HTTP |
-| inside_sg | inside | Restrict traffic to inside interface only from Web servers | HTTP |
-| mgmt_sg | FTD Management | Restrict access to management interface only from FMC | TCP/8305 |
-| no_access | diagnostic interface | Restrict all access | - |
-| fmc_mgmt_sg | FMC Management | Restrict access to FMC management interface to HTTPS from external network | HTTPS |
-| fmc_mgmt_sg | FMC Management | Restrict access to FMC management interface only from FTD management interface | TCP/8305 |
-
-We will allow all outbound traffic in the security groups.
-
-## **4. <ins>Network Interfaces** </ins>: 
+## **3. <ins>Network Interfaces** </ins>: 
   
-  In this lab we are creating the following network interfaces. 
+  In this model we are creating the following network interfaces. 
 
   * ftd_inside   -  **```2```** (one in each AZ)
   * ftd_outside  - **```2```** (one in each AZ)
@@ -109,15 +93,105 @@ resource "aws_network_interface" "ftd_outside" {
   subnet_id         = local.mgmt_subnet[local.azs[count.index] - 1].id
   source_dest_check = false
   private_ips       = [var.ftd_outside_ip[count.index]]
-  security_groups   = [aws_security_group.outside_sg.id]
 }
 ```
+
+
+
+## 4. <ins>**Security Groups :**</ins> 
+<br>
+ In this workshop we are creating following two security groups.  
+
+ * Outside interface SG
+ * Inside interface SG
+ * Mgmt interface SG
+ * FMC Mgmt interface SG
+ * No Access
+  
+A security group can be heavily customized according to the needs of particular network, the example given below focuses on allowing everything for our **allow_all** SG.
+
+<br>
+<ins>Code snippet </ins>:
+
+```
+rresource "aws_security_group" "outside_sg" {
+  name        = "Outside Interface SG"
+  vpc_id      = local.con
+
+  dynamic "ingress" {
+    for_each = var.outside_interface_sg
+    content {
+      from_port   = lookup(ingress.value, "from_port", null)
+      to_port     = lookup(ingress.value, "to_port", null)
+      protocol    = lookup(ingress.value, "protocol", null)
+      cidr_blocks = lookup(ingress.value, "cidr_blocks", null)
+      description = lookup(ingress.value, "description", null)
+    }
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+}
+```
+with values as below:
+```
+outside_interface_sg = [
+    {
+        from_port = 80
+        protocol = "TCP"
+        to_port = 80
+        cidr_blocks = ["10.0.2.0/24","10.0.20.0/24"]
+    },
+    {
+        from_port = 22
+        protocol = "TCP"
+        to_port = 22
+        cidr_blocks = ["10.0.2.0/24","10.0.20.0/24"]
+    }
+]
+
+```
+
+This kind of egress part will allow all external connections, it can  be changed if more restrictions are required.  
+
+To attach the security group to the network interface we need to use ```aws_network_interface_sg_attachment```
+
+```
+resource "aws_network_interface_sg_attachment" "ftd_outside_attachment" {
+  count                = 2
+  security_group_id    = aws_security_group.allow_all.id
+  network_interface_id = aws_network_interface.ftd_outside[count.index].id
+}
+```
+Simply pass the SG id and network interface id to complete the attachment.
+   
 
 ## **5. <ins>Route tables**</ins>:
 
 Route tables are important for VPC to keep a track of where the traffic from our subnets (or gateway) is directed to.
 
-To create route tables and routes, we will use **aws_route_table** terraform resource.
+First create an [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) for your VPC. Internet gateway is required for several reasons such as traffic to an application from internet. 
+
+>Note: Internet gateway in this usecase is already created
+
+Code snippet to create internet gateway:
+
+```
+resource "aws_internet_gateway" "int_gw" {
+  vpc_id = aws_vpc.ftd_vpc.id
+  tags = {
+    Name = "Internet Gateway"
+  }
+}
+```
+ ![internet_gateway](/static/Images/setup_network_resources/igw.jpeg)   
+ <br>
+
+Now to create route tables and routes, we will use **aws_route_table** terraform resource.
 ```
 resource "aws_route_table" "ftd_outside_route" {
   vpc_id = aws_vpc.ftd_vpc.id

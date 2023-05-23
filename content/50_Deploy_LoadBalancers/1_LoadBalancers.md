@@ -1,14 +1,14 @@
 ---
-title: "Network Load Balancer - Description"
+title: "Network Load balancer"
 weight: 1
 ---
 
 ## Introduction
 Load balancer is a key component of the network. It distributes all the incoming traffic across any set of components like EC2 instances, DB, etc. 
 
-In this step we will create.  
+In this workshop we will create.  
 
-* External Load balancer     - **```1```**
+* External Load balancer     - **```1```** 
 
 ***aws_lb*** terraform resource will be used to create the load balancer.  
 
@@ -26,7 +26,7 @@ resource "aws_lb" "external-lb" {
 2. Enabling cross zone load balancing is crucial to make sure that requests are evenly split between all the availability zones used. 
 3. Set the internal attribute to false for the internet facing load balancer. 
    
-  ![load_balancers](/static/images/deploy_loadbalancers/lb.png) 
+  ![load_balancers](/static/Images/deploy_loadbalancers/lb.jpeg) 
 
 Following are the variables created to set port and protocol on which the load balancer will listen to and use for checking health status of tartget instances
 
@@ -34,14 +34,14 @@ Following are the variables created to set port and protocol on which the load b
 variable "external_listener_ports" {
   default = [{
     protocol = "TCP"
-    port = 80
+    port = 22
     target_type = "ip"
   }]
 }
 variable "external_health_check" {
   default = {
     protocol = "TCP"
-    port     = 22
+    port     = 80
   }
 }
 ```
@@ -64,7 +64,7 @@ resource "aws_lb_target_group" "external_front_end" {
   }
 }
 ```    
-  ![target_groups](/static/images/deploy_loadbalancers/target_group.png) 
+  ![target_groups](/static/Images/deploy_loadbalancers/target_groups.jpeg) 
   
 --> We can change the attributes of ```heath_check ```attachment as per specific needs.
 
@@ -99,25 +99,4 @@ resource "aws_lb_listener" "external_listener" {
 
 1. We add the ARN of load balancer and the ports and protocols desired. 
 2. Target group is also attached as the part of ***default_action***.
-
-## Note:
-Once the Load Balancer is deployed, we can obtain the IP addresses of the load balancers and replace them with the subnet in Outside Interface SG security group to make it more restricted.
-
-To find private IP addresses of the load balancer, run the command: 
-
-```console
-aws elbv2 describe-load-balancers --names External-LB
-```
-obtain the ELB id (e.g - net/test/a43050c9db0117) and use it in the next command.
-
-```console
-aws ec2 describe-network-interfaces --filters Name=description,Values="ELB <ELB ID>" --query 'NetworkInterfaces[*].PrivateIpAddresses[*].PrivateIpAddress'
-```
-
-This will give you all the private IPs of ELB. Replace them with the respective subnets in the **Outside Interface SG** security group created earlier. 
- - In the AWS Console, navigate to VPC > Security Groups
- - Select Outside Interface SG 
- - Click on Edit inbound rules
- - Replace the subnets in source with the respective IP Addresses.
-
 

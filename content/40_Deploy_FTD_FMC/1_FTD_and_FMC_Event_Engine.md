@@ -1,16 +1,17 @@
 ---
-title: "Event Engine: FTDv and FMCv - Description"
+title: "Event Engine - Deployment of FTD and FMC"
 weight: 1
 ---
 
 ## **Introduction**
 
- When using the AWS Events Engine, the AMIs used to deploy Cisco secure FTDv and FMCv should have been deployed to your event engine platform prior to the event and are available in your AMI Owned Images. If you dont see the AMIs, please contact the event administrator.
+ The AMIs used to deploy Cisco secure FTD and FMC are available in your AMI Owned Images.
 
 ### <ins>**FMC**</ins>
-The code below is for creating one FMC in any one of the AZ which will host the 2 FTDv instances. 
+The code below is for creating one FMC in any one of the AZ which will host the 2 FTD instances. 
+The data source to fetch private ami id of fmc:  
 
-Here is the data source to fetch private ami id of fmc:  
+>Note: Enter the owner account ID found in the AMI owned image section.
 
 ```
 data "aws_ami" "fmcv" {
@@ -39,7 +40,7 @@ data "template_file" "fmc_startup_file" {
 }
 ```
 
-The AMI that we are using here is a private AMI.
+The AMI that we are using here is the private one.
 
 <ins>**Creation of FMC**</ins>
 ```
@@ -58,11 +59,11 @@ resource "aws_instance" "fmcv" {
   }
 }
 ```
-We pass the user data and the network interface specific to FMC. The fmc_startup_file looks like this:
+We pass the user data and the network interface specific to FMC. The fmc_startup_file is like this:
 ```
 #FMC
 {
-"AdminPassword": "Password@123!",
+"AdminPassword": "Cisco@123",
 "Hostname":      "FMC-01",
 }
 ``` 
@@ -71,7 +72,9 @@ We pass the user data and the network interface specific to FMC. The fmc_startup
 
 The code below is deploying two FTD instances, each in a different availability zone with different network interfaces like *outside*, *inside*, *diagnostic* and *management* attached to it.
 
-Here is the code snippet that fetches the private ami to create ftd:  
+>Note: Enter the owner account ID found in the AMI owned image section.
+
+The data block to fetch private ami to create ftd:  
 
 ```
 data "aws_ami" "ftdv" {

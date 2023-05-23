@@ -7,41 +7,19 @@ weight: 2
 Aim is to deploy all the resources created on AWS through terraform. 
 
 Open the Cloud9 terminal.
-If you are using AWS Event Engine navigate to the folder named **secure-firewall/AWS_Workshop/AWS_Workshop_Code_EventEngine/Working_Directory**
+If you are using AWS Event Engine navigate to the folder named **AWS_Workshop_Code_event_engine/Working_Directory/Resources**
 
-If you are using AWS Account navigate to the folder named 
-**secure-firewall/AWS_Workshop/AWS_Workshop_Code/Working_Directory**
-
-Create a new folder inside Working_Directory named **Development**
-
-```console
-cd ./secure-firewall/AWS_Workshop/AWS_Workshop_Code/Working_Directory
-mkdir Development
-```
+If you are using personal AWS Account, navigate to the folder named **AWS_Workshop_Code_aws_account/Working_Directory/Resources**
 
 Copy **providers.tf**, **networks.tf**, **variables.tf**, **terraform.tfvars** files from the Resources folder to the Development folder.
 
-1. Overview of the **terraform.tfvars** file:
+1. **<ins>Enter values for Terraform variables</ins>**
+   - provide the 'aws_access_key', 'aws_secret_key', 'session_token' of your user.
+   - provide the name of the key created in previous section
+   - provide the FMC IP address
+   - Rest of the variables have been provided with a value already, however if you wish you can modify those values
 
-::alert[If you are using the Event Engine, please use the credentials you copied in the [AWS Event Engine](/10_prerequisites/1_aws_event_engine.md)]
-
-   - provide 'aws_access_key' of your user.
-   - provide the 'aws_secret_key' of your user.
-   - If you are using event engine, provide the 'session token' of your user
-   - Change the region as per the region where you plan to deploy the resources.
-
-![provider](/static/images/setup_network_resources/provider_var.png)
-
-   - This section will use the same VPC that was created in the getting started section so **vpc_name** variable has the value **IAC-VPC** and variable **vpc_cidr** is empty as its not required.
-   - provide the name of EC2 keypair that you created in the getting started section to the variable **keyname** 
-   - Rest of the variables have been provided with a value already and require no change for this lab, however if you wish you can modify those values.
-
-![keyname](/static/images/setup_network_resources/keyname.png)
-
-**Note:** variable **create_igw** is set to false since the VPC created in the getting started section for deploying cloud9 will already have an Internet Gateway attached to it. If you plan to use a different VPC which does not already have an Internet Gateway attached, change the value of **create_igw** to true.
-
-
-If you are not inside the Development folder, navigate to the **Development folder** And then run the following set of commands inside folder.
+And then run the following set of commands.
 
 2. **<ins>terraform init</ins>**
 
@@ -52,7 +30,7 @@ terraform init
 This will download & install all the necessary packages needed, like the aws package. 
 <br>  
 <br>
-   ![init_nw](/static/images/setup_network_resources/INIT_NW.png)
+   ![init_nw](/static/Images/setup_network_resources/INIT_NW.png)
 <br> 
 
 3. **<ins>terraform validate</ins>**
@@ -63,7 +41,7 @@ terraform validate
 
 Run this to check for any syntax error in the code.
 
-![validate_nw](/static/images/setup_network_resources/VALIDATE_NW.png)  
+![validate_nw](/static/Images/setup_network_resources/VALIDATE_NW.png)  
 <br>  
 
 4. **<ins>terraform plan</ins>**
@@ -74,7 +52,7 @@ terraform plan --out awslab
 ``` 
 The resources shown with the '+' symbol are set to be created. It will show the number(may be different for your topology) of resources to be added.
 
-![plan_nw](/static/images/setup_network_resources/PLAN_NW.png)
+![plan_nw](/static/Images/setup_network_resources/PLAN_NW.png)
 
 5. **<ins>terrafrom apply</ins>**
 
@@ -84,23 +62,26 @@ If you are satisfied with the plan of the configuration apply it.
 terraform apply awslab
 ```
 
-![apply_nw](/static/images/setup_network_resources/APPLY_NW.png)
+![apply_nw](/static/Images/setup_network_resources/APPLY_NW.png)
 
 Open your AWS Management Console to see if all the resources are correctly deployed. 
 
 **Subnets:** 
-<br>
 Search for your VPC in subnets and see all of them.
 <br>
+ 
 
-![subnets](/static/images/setup_network_resources/Subnets.png)
+![subnets](/static/Images/setup_network_resources/subnets.jpeg)
 
-**Security Groups**
-![Security Groups](/static/images/setup_network_resources/SecurityGroups.png)
+**Interface:** 
+![interfaces](/static/Images/setup_network_resources/network_interfaces.jpeg)
 
-**Interfaces:** 
-![interfaces](/static/images/setup_network_resources/Network_interfaces.png)
+**Internet_Gateway:**
+ ![internet_gateway](/static/Images/setup_network_resources/igw.jpeg)
+ 
+**Security Group:**
+![SG](/static/Images/setup_network_resources/security_groups.jpeg)
 
 **Route Tables:** 
-![routes_tables](/static/images/setup_network_resources/routetables.png)
+![routes_tables](/static/Images/setup_network_resources/routetables.jpeg)
 
