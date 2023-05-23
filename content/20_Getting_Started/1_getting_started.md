@@ -115,4 +115,4 @@ Keep an open scratch pad in Cloud9 or a text editor on your local computer for n
 
 - Keep your [AWS Cloud9 IDE](#aws-cloud9-ide) opened in a browser tab
 
->Note: Click [here](../20_getting_started/2_Subscribe_to_FMC_and_FTD_images.md) if you are using a personal account to subscribe to Cisco FTD and FMC images.
+>Note: Click [here](../20_Getting_Started/2_Subscribe_to_FMC_and_FTD_images.md) if you are using a personal account to subscribe to Cisco FTD and FMC images.

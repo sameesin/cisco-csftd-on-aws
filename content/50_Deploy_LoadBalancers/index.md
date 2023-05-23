@@ -3,6 +3,6 @@ title: "Deploy Network Loadbalancer"
 weight: 50
 ---
 
-[LoadBalancers Setup - Description](../50_deploy_loadbalancers/1_loadbalancers.md)
+[LoadBalancers Setup - Description](../50_Deploy_LoadBalancers/1_LoadBalancers.md)
 
-[LoadBalancers- Deployment](../50_deploy_loadbalancers/2_deployment.md)
+[LoadBalancers- Deployment](../50_Deploy_LoadBalancers/2_Deployment.md)
