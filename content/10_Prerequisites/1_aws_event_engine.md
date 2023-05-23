@@ -13,7 +13,7 @@ eg:
 
 1. Go to https://dashboard.eventengine.run to log into AWS Event Engine.
 
-![Step 1](../static/Images/getting_started/c9-step1.png)
+![Step 1](/static/Images/getting_started/c9-step1.png)
 
 2. Enter your unique 12-digit hash code and choose *Accept Terms & Login*.
 
