@@ -5,7 +5,7 @@ weight: 1
 
 ## **Introduction**
 
- The AMIs used to deploy Cisco secure FTD and FMC are available in your AMI Owned Images.
+ The AMIs used to deploy Cisco secure FTD and FMC are available in your AMI Owned images.
 
 ### <ins>**FMC**</ins>
 The code below is for creating one FMC in any one of the AZ which will host the 2 FTD instances. 

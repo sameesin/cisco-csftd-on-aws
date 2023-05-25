@@ -47,6 +47,7 @@ python3 -m http.server --bind 0.0.0.0 9000
 >Note: Bastion machine is in bastion_subnet with it's own network interface & security group attached to it.
 
 **Routes are also needed to be created for this machine**
+Default route pointing to the internet gateway so that the host can be accessed from internet
 
 ```console
 resource "aws_route_table" "bastion_route" {
@@ -112,9 +113,9 @@ resource "aws_lb" "app-lb" {
 }
 ```
 
-* While mapping both subnets we also assign private_ip to each of them, this will help us while testing traffic. 
+* While mapping both subnets we also assign private_ip to each of them. 
 
-* Ensure that the IP address added belong to your application subnet.
+* Ensure that the IP address added, belong to your application subnet.
   
 >Note: Listner, Target group & Target Group attachment also needs to created for **app-lb**
 

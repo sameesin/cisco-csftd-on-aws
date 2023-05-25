@@ -42,7 +42,7 @@ aws ec2 describe-network-interfaces --filters Name=description,Values="ELB <ELB 
 
 This will give you all the private IPs of ILB, enter them when prompted. 
 
-Update the terraform.tfvars file with the ELB Private IP address.
+Update the terraform.tfvars file in AWS_Workshop_Code_EventEngine folder with the ELB Private IP address.
 
 ### <ins> Step 2: Tapping in FMC </ins>
 
@@ -249,7 +249,7 @@ The same needs to be done for FTD2
 
 2 interfaces with logical name `inside` and `outside` will be created on FTD using `fmc_device_physical_interfaces` resource.
 
-Following is example of creating `outside` interface on both the FTDs 
+Following is example of creating `outside` interface on FTD
 ```
 data "fmc_devices" "device" {
   depends_on = [fmc_devices.device2]
@@ -337,7 +337,7 @@ resource "fmc_ftd_deploy" "ftd" {
 }
 ```
 
-### <ins>Final step: Running the Terraform code</ins>
+## <ins>Running the Terraform code</ins>
 
 In cloud9 IDE navigate to static folder `AWS_Workshop_Code_EventEngine` and ensure following files are available.
 **fmc_config_terraform.tf**, **providers.tf**, **variables.tf** and **terraform.tfvars**
@@ -365,12 +365,12 @@ To ensure that everything took place as per your requirment open the FMC-UI on y
 
 For eg: 
 1. **ACP:**
-![fmcapi_policy](/static/Images/firewall_configuration/FMCAPI_POLICY.png) 
+![fmcapi_policy](/static/images/firewall_configuration/FMCAPI_POLICY.png) 
 
 It also shows that this was created using fmcapi
 
 2. **Devices:**
-![device](/static/Images/firewall_configuration/FMC_DEVICE_SCR.png)
+![device](/static/images/firewall_configuration/FMC_DEVICE_SCR.png)
 
 Check the policy name attached to the FTD.
 

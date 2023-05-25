@@ -24,7 +24,7 @@ And then run the following set of commands.
    ``` 
    This will download & install all the necessary modules. 
 
-![init_fw](/static/Images/deploy_ftd_fmc/INIT_FW.png)
+![init_fw](/static/images/deploy_ftd_fmc/INIT_FW.png)
 
 2. **<ins>terraform validate**</ins>
 
@@ -33,7 +33,7 @@ And then run the following set of commands.
     ``` 
     to check for any syntax error in the code.
 
-![validate_fw](/static/Images/deploy_ftd_fmc/VALIDATE_FW.png)
+![validate_fw](/static/images/deploy_ftd_fmc/VALIDATE_FW.png)
 
 3. **<ins>terraform plan**</ins>
 
@@ -43,7 +43,7 @@ And then run the following set of commands.
     ```
     The resources shown with the '+' symbol are set to be created. It will show the additional number of resources to be added by Terraform.
 
-![plan_fw](/static/Images/deploy_ftd_fmc/PLAN_FW.png)
+![plan_fw](/static/images/deploy_ftd_fmc/PLAN_FW.png)
 
 4. **<ins>terraform apply**</ins>
 
@@ -52,23 +52,23 @@ And then run the following set of commands.
     terraform apply awslab
     ```
     
-![apply_fw](/static/Images/deploy_ftd_fmc/APPLY_FW.png)
+![apply_fw](/static/images/deploy_ftd_fmc/APPLY_FW.png)
 Open your AWS Management Console to see if all the resources are correctly deployed. 
 
 **EC2:**
 
 - FMC and both the FTD are highlighted. 
-![instances](/static/Images/deploy_ftd_fmc/INSTANCE_FTD_FMC.png)
+![instances](/static/images/deploy_ftd_fmc/INSTANCE_FTD_FMC.png)
 
 **FMC:** 
 
 - Open the FMC instance to see the public IP and other details of FMC.
-![fmc](/static/Images/deploy_ftd_fmc/fmc_detail.jpeg)
+![fmc](/static/images/deploy_ftd_fmc/fmc_detail.jpeg)
 
 **FTD:**
 
 - FTD can also be expanded in the similar fashion
-![ftd](/static/Images/deploy_ftd_fmc/ftd_detail.jpeg)
+![ftd](/static/images/deploy_ftd_fmc/ftd_detail.jpeg)
 
 
 

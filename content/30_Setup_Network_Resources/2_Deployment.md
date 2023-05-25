@@ -30,7 +30,7 @@ terraform init
 This will download & install all the necessary packages needed, like the aws package. 
 <br>  
 <br>
-   ![init_nw](/static/Images/setup_network_resources/INIT_NW.png)
+   ![init_nw](/static/images/setup_network_resources/INIT_NW.png)
 <br> 
 
 3. **<ins>terraform validate</ins>**
@@ -41,7 +41,7 @@ terraform validate
 
 Run this to check for any syntax error in the code.
 
-![validate_nw](/static/Images/setup_network_resources/VALIDATE_NW.png)  
+![validate_nw](/static/images/setup_network_resources/VALIDATE_NW.png)  
 <br>  
 
 4. **<ins>terraform plan</ins>**
@@ -52,7 +52,7 @@ terraform plan --out awslab
 ``` 
 The resources shown with the '+' symbol are set to be created. It will show the number(may be different for your topology) of resources to be added.
 
-![plan_nw](/static/Images/setup_network_resources/PLAN_NW.png)
+![plan_nw](/static/images/setup_network_resources/PLAN_NW.png)
 
 5. **<ins>terrafrom apply</ins>**
 
@@ -62,7 +62,7 @@ If you are satisfied with the plan of the configuration apply it.
 terraform apply awslab
 ```
 
-![apply_nw](/static/Images/setup_network_resources/APPLY_NW.png)
+![apply_nw](/static/images/setup_network_resources/APPLY_NW.png)
 
 Open your AWS Management Console to see if all the resources are correctly deployed. 
 
@@ -71,17 +71,17 @@ Search for your VPC in subnets and see all of them.
 <br>
  
 
-![subnets](/static/Images/setup_network_resources/subnets.jpeg)
+![subnets](/static/images/setup_network_resources/subnets.png)
 
 **Interface:** 
-![interfaces](/static/Images/setup_network_resources/network_interfaces.jpeg)
+![interfaces](/static/images/setup_network_resources/network_interfaces.png)
 
 **Internet_Gateway:**
- ![internet_gateway](/static/Images/setup_network_resources/igw.jpeg)
+ ![internet_gateway](/static/images/setup_network_resources/igw.jpeg)
  
 **Security Group:**
-![SG](/static/Images/setup_network_resources/security_groups.jpeg)
+![SG](/static/images/setup_network_resources/security_groups.png)
 
 **Route Tables:** 
-![routes_tables](/static/Images/setup_network_resources/routetables.jpeg)
+![routes_tables](/static/images/setup_network_resources/routetables.png)
 
