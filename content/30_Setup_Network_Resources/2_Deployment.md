@@ -74,7 +74,7 @@ Search for your VPC in subnets and see all of them.
 ![subnets](/static/images/setup_network_resources/subnets.png)
 
 **Interface:** 
-![interfaces](/static/images/setup_network_resources/network_interfaces.png)
+  ![interfaces](/static/images/setup_network_resources/network_interfaces.png)
 
 **Internet_Gateway:**
  ![internet_gateway](/static/images/setup_network_resources/igw.jpeg)
@@ -83,5 +83,5 @@ Search for your VPC in subnets and see all of them.
   ![SG](/static/images/setup_network_resources/security_groups.png)
 
 **Route Tables:** 
-![routes_tables](/static/images/setup_network_resources/routetables.png)
+  ![routes_tables](/static/images/setup_network_resources/routetables.png)
 
