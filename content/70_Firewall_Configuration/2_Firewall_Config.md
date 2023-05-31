@@ -339,7 +339,7 @@ resource "fmc_ftd_deploy" "ftd" {
 
 ## <ins>Running the Terraform code</ins>
 
-In cloud9 IDE navigate to static folder `AWS_Workshop_Code_EventEngine` and ensure following files are available.
+In cloud9 IDE navigate to the `AWS_Workshop` folder and ensure following files are available.
 **fmc_config_terraform.tf**, **providers.tf**, **variables.tf** and **terraform.tfvars**
 
 Run the following commands:

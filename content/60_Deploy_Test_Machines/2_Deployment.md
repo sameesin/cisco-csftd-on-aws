@@ -7,12 +7,11 @@ weight: 2
 Aim is to deploy the Test Machines on AWS through terraform. 
 
 
->**IMPORTANT**: We will first run our Bastion terraform plan and then run terraform plan for application server.  
-
+>**IMPORTANT**: We will first run our Bastion terraform plan and then run terraform plan for application server after the bastion host is up and running.  
 
 
 ## <ins>**Bastion Server**:</ins>
-Navigate to the Cloud9 terminal and copy **bastion.tf**, **bastion_install.tpl** file from the Resources folder to the Development folder.
+Navigate to the Cloud9 terminal and copy **bastion.tf**, **bastion_install.tpl** files from the Resources folder to the Development folder.
 
 ```console
   cp ./Resources/bastion.tf ./Development/bastion.tf

@@ -29,18 +29,20 @@ Your Cloud9 environment will have access to the same AWS resources as the user w
 
 5. Under New EC2 Instance Set the *Instance type* to **t2.micro (1 GiB RAM + 1 vCPU)**. Other settings can be left with default values
 
-6. under Network Settings click on Create VPC, 
+6. under Network Settings 
+  - Seclect Connection as **Secure Shell**
+>Note: Under VPC Settings, if VPC already exists then use that VPC and Subnet under VPC Settings and move to step 7, else click on Create VPC
   - select Create VPC in the new tab
   - select the option to create VPC and subnets 
   - provide a name ```IAC-vpc``` and CIDR ```10.0.0.0/16``` for the VPC
   - provide a name ```mgmt``` and CIDR ```10.0.0.0/24``` for the subnet
   - click on Create VPC
-- Back in the cloud9 settings page, select the created VPC and the created subnet 
-- Leave all other defaults unchanged.
+7. Back in the cloud9 settings page, select the created VPC and the created subnet 
+8. Leave all other defaults unchanged.
 
 ![Step 6](/static/images/getting_started/c9-step6-c.png)
 
-7. Click on Create.<br>
+9. Click on Create.<br>
 It will take a couple of minutes for your Cloud9 environment to be provisioned and prepared.
 
 ## <ins>**Setting up Cloud9 IDE**</ins>

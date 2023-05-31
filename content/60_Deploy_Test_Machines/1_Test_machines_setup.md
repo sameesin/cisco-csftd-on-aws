@@ -16,7 +16,7 @@ Add the ami id of the ubuntu based on your region
 
 ```console
 resource "aws_instance" "bastion_machine" {
-  ami           = "ami-055d15d9cfddf7bd3" 
+  ami           = "<ubuntu ami id>" 
   instance_type = "t2.micro"
   key_name      = var.keyname
   network_interface {
@@ -77,7 +77,7 @@ Add the ami id of the ubuntu based on your region
 ```console
 resource "aws_instance" "Application_server" {
   count         = 2
-  ami           = "ami-055d15d9cfddf7bd3" 
+  ami           = "<ubuntu ami id>" 
   instance_type = "t2.micro"
   key_name      = var.keyname
 
@@ -92,6 +92,8 @@ resource "aws_instance" "Application_server" {
 ```
 >Note: Both Web servers are in different AZ & in their own dedicated subnet with respective network interfaces with security group attached to them.  
 
+
+### Internal load balancer
 
 We will also be creating an internal ***Network Load balancer*** with listeners & target for attaching both **app_subnets** to it.
 
