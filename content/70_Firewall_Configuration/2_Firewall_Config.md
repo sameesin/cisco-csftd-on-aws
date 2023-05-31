@@ -42,7 +42,7 @@ aws ec2 describe-network-interfaces --filters Name=description,Values="ELB <ELB 
 
 This will give you all the private IPs of ILB, enter them when prompted. 
 
-Update the terraform.tfvars file in AWS_Workshop_Code_EventEngine folder with the ELB Private IP address.
+Update the terraform.tfvars file in AWS_Workshop folder with the ELB Private IP address.
 
 ### <ins> Step 2: Tapping in FMC </ins>
 
