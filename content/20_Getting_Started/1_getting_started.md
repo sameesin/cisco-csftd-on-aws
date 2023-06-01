@@ -9,6 +9,8 @@ In order for you to succeed in this workshop, you will need to run through a few
 
 ## **<ins>Starting AWS Cloud9 IDE</ins>**
 
+> Note: If a cloud9 instance is already available then skip this section and move to **Setting up Cloud9 IDE** section.
+
 Your Cloud9 environment will have access to the same AWS resources as the user with which you logged into the AWS Management Console. We strongly recommend using Cloud9 to complete this workshop.
 
 **Cloud9 works best with Chrome or Firefox, not Safari. It cannot be used from a tablet.**

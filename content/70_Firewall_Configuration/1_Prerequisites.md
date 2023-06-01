@@ -6,6 +6,7 @@ weight: 1
 #### Following prerequisites need to be performed before configuring the Cisco FTD using Python
 
 > Note: You might have to wait upto 30 min, for FMC to be up and running.
+> Note: If there is an existing FMC up and running user can use that. Provide the public IP address of the FMC in the terraform.tfvars file in the AWS_Workshop folder. 
 
 ## **Enable Evaluation License**
 

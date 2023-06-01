@@ -5,13 +5,13 @@ weight: 1
 
 ## **Introduction**
 
- The AMIs used to deploy Cisco secure FTD and FMC are available in your **AMI > Images owned by me** section.
+ The AMIs used to deploy Cisco secure FTD and FMC are available in your **AMI > Private Images** section.
 
 ### <ins>**FMC**</ins>
 The code below is for creating one FMC in any one of the AZ which will host the 2 FTD instances. 
 The data source to fetch private ami id of fmc:  
 
->Note: Enter the owner account ID found in the AMI owned image section.
+>Note: Enter the owner account ID found in the AMI owned image section in the data.tf file of FirewallServer inside module folder.
 
 ```
 data "aws_ami" "fmcv" {
@@ -72,7 +72,7 @@ We pass the user data and the network interface specific to FMC. The fmc_startup
 
 The code below is deploying two FTD instances, each in a different availability zone with different network interfaces like *outside*, *inside*, *diagnostic* and *management* attached to it.
 
->Note: Enter the owner account ID found in the AMI > Images owned by me section.
+>Note: Enter the owner account ID found in the AMI > Private Images section in the data.tf file of FirewallServer inside module folder.
 
 The data block to fetch private ami to create ftd:  
 

@@ -339,6 +339,9 @@ resource "fmc_ftd_deploy" "ftd" {
 
 ## <ins>Running the Terraform code</ins>
 
+> Note: You might have to wait upto 30 min, for FMC to be up and running.
+> Note: If there is an existing FMC up and running user can use that. Provide the public IP address of the FMC in the terraform.tfvars file in the AWS_Workshop folder. 
+
 In cloud9 IDE navigate to the `AWS_Workshop` folder and ensure following files are available.
 **fmc_config_terraform.tf**, **providers.tf**, **variables.tf** and **terraform.tfvars**
 
