@@ -3,7 +3,7 @@ title: "Conclusion"
 weight: 100
 ---
 ## Congratulations!
-You’ve successfully finished our the Cisco Secure Firewall on AWS workshop!
+You’ve successfully finished the first lab of the Cisco Secure Firewall on AWS workshop!
 
 In this workshop, you’ve learned how to use terraform to:
 
