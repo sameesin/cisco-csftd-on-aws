@@ -1,5 +1,5 @@
 ---
-title: "Cisco Secure Firewall on AWS Workshop"
+title: "Cisco Secure Firewall on AWS Workshop with Network Loadbalancer"
 weight: 1
 ---
 
