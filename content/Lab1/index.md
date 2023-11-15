@@ -1,6 +1,6 @@
 ---
-title: "Cisco Secure Firewall on AWS Workshop with Network Loadbalancer"
-weight: 1
+title: "Lab 1"
+weight: 20
 ---
 
 ## Welcome
