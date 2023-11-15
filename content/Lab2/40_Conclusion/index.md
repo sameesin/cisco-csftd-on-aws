@@ -1,6 +1,6 @@
 ---
 title: "Conclusion"
-weight: 60
+weight: 40
 ---
 ## Congratulations!
 You’ve successfully finished the second lab of the Cisco Secure Firewall on AWS workshop!
