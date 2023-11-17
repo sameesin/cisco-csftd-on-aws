@@ -9,28 +9,81 @@ To test this setup we will deploy 2 linux machines. One will act as a bastion se
 
 ### **1. Deploy the Bastion** 
 
-1. Navigate to the EC2 Dashboard: Click on the "Services" dropdown menu, select "EC2" under the "Compute" section.
-2. Click on the "Launch Instance" button.
-3. choose an Ubuntu AMI.
-4. In instance type, choose "t2.micro".
-5. Select the key pair created earlier. This will be used to SSH into your instance.
-6. Select Spoke VPC and one Spoke subnet (eg Spoke1) for deployment.
-7. Enable "Auto-assign Public IP" so that the instance will have a public IP.
-8. Create a new security group or use an existing one. Open the required ports for SSH,HTTP and any other services you want to use.
-9. Click on the "Launch" button.
+Terraform will be used to deploy the bastion server and attach an Elastic IP to it for SSH access
 
-![bastion](../../images/bastion.png)
+```terraform
+resource "aws_instance" "bastion_machine" {
+  ami           = "<AMI ID"
+  instance_type = "t3.micro"
+  key_name      = var.keyname
+  network_interface {
+    network_interface_id = aws_network_interface.bastion_interface.id
+    device_index         = 0
+  }
+  tags = {
+    Name = "bastion"
+  }
+}
+```
+
+![bastion](/static/images/deploy_test_machines/bastion_instance.jpeg)
 
 ### **2. Deploy the Test machine** 
-1. Navigate to the EC2 Dashboard: Click on the "Services" dropdown menu, select "EC2" under the "Compute" section.
-2. Click on the "Launch Instance" button.
-3. choose an Ubuntu AMI.
-4. In instance type, choose "t2.micro".
-5. Select the key pair created earlier. This will be used to SSH into your instance.
-6. Select Spoke VPC and one Spoke subnet (eg Spoke2) for deployment. 
->Note: Use a different subnet for your test machine than what is used for bastion.
-7. Disable "Auto-assign Public IP"
-8. Create a new security group or use an existing one. Open the required ports for SSH,HTTP and any other services you want to use.
-9.  Click on the "Launch" button.
 
-![testmc](../../images/test-mc.png)
+Terraform will be used to deploy the test machine from which internet access will be tested. User will SSH into the test machine from the bastion server.
+
+```terraform
+resource "aws_instance" "app_machine" {
+  ami           = "<AMI ID>"
+  instance_type = "t3.micro"
+  key_name      = var.keyname
+  network_interface {
+    network_interface_id = aws_network_interface.app_interface.id
+    device_index         = 0
+  }
+  tags = {
+    Name = "application"
+  }
+}
+```
+
+### Deployment
+
+Run the following set of commands to deploy the 2 instances in AWS
+
+1. **<ins>terraform init</ins>**
+
+   ```console 
+   terraform init
+   ``` 
+   This will download & install all the necessary modules. 
+
+![init_fw](/static/images/deploy_ftd_fmc/INIT_FW.png)
+
+2. **<ins>terraform validate**</ins>
+
+    ```console
+    terraform validate
+    ``` 
+    to check for any syntax error in the code.
+
+![validate_fw](/static/images/deploy_ftd_fmc/VALIDATE_FW.png)
+
+3. **<ins>terraform plan**</ins>
+
+    To understand what the code will reflect and do on your AWS account run 
+    ```console
+    terraform plan --out awslab
+    ```
+    The resources shown with the '+' symbol are set to be created. It will show the additional number of resources to be added by Terraform.
+
+![plan_fw](/static/images/deploy_ftd_fmc/PLAN_FW.png)
+
+4. **<ins>terraform apply**</ins>
+
+    If you are satisfied with the plan of the configuration, run 
+    ```console
+    terraform apply awslab
+    ```
+    
+![apply_fw](/static/images/deploy_ftd_fmc/APPLY_FW.png)

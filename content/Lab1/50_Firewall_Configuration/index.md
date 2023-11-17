@@ -7,6 +7,6 @@ In this section, we will perform and firewall registration and configuration usi
 We will first walk through the firewall configuration prerequisites and then proceed with the firewall configuration deployment.
 
 
-[Firewall Configuration - Prerequisites](../50_Firewall_Configuration/1_Prerequisites.md)
+[Firewall Configuration - Prerequisites](../50_Firewall_Configuration/1_firewall_configuration_prerequisites.md)
 
-[Firewall Configuration - Deployment](../50_Firewall_Configuration/2_Firewall_Config.md)
+[Firewall Configuration - Deployment](../50_Firewall_Configuration/2_firewall_Configuration_deployment.md)
